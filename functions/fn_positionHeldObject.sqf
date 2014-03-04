@@ -22,16 +22,20 @@ _direction          = [_this, 3, 0, [0]] call BIS_fnc_param;
 // Detach object so we can reattach with new positioning
 detach LOG_currentObject;
 
+// _bb = boundingBoxReal LOG_currentObject;
 _bb = boundingBoxReal LOG_currentObject;
-_corner = [0, 0, _bb select 1 select 0, _bb select 1 select 1, _direction] call LOG_fnc_getCorner;
+_bbCenter = boundingCenter LOG_currentObject;
+
+
+_corner = [_bbCenter select 0, _bbCenter select 1, _bb select 1 select 0, _bb select 1 select 1, _direction] call LOG_fnc_getCorner;
 
 _objSize   = LOG_currentObject call LOG_fnc_objectSize;
 _maxHeight = _objSize select 2;
 
 LOG_currentObject attachTo [player, [
 	_centerFromPlayer,
-	_distanceFromPlayer + (_corner select 1),
-	(_maxHeight/2) + _offsetHeight
+	_distanceFromPlayer + abs(_corner select 1),
+	_offsetHeight + (_bbCenter select 2)
 ]];
 
 LOG_currentObject setDir _direction;

@@ -6,14 +6,5 @@ if ( !isNil "LOG_currentObject" ) then {
 };
 
 LOG_currentObject = _object;
-_objSize   = LOG_currentObject call LOG_fnc_objectSize;
-_maxLength = _objSize select 1;
-_maxHeight = _objSize select 2;
 
-_object attachTo [player, [
-	0,
-	(_maxLength/2) + 5,
-	_maxHeight/2
-]];
-
-LOG_currentObject
+[] call LOG_fnc_positionHeldObject;
