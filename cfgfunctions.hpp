@@ -5,5 +5,6 @@ class LOG {
 		class objectSize{};
 		class pickupObject{};
 		class positionHeldObject{};
+		class releaseObject{};
 	};
 };
