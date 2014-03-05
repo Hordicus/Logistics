@@ -6,5 +6,7 @@ class LOG {
 		class pickupObject{};
 		class positionHeldObject{};
 		class releaseObject{};
+		class getObjectCorner{};
+		class distanceFromObject{};
 	};
 };
