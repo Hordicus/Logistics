@@ -14,10 +14,15 @@
 	held object
 */
 
-_distanceFromPlayer = [_this, 0, 5, [0]] call BIS_fnc_param;
-_offsetHeight       = [_this, 1, 0, [0]] call BIS_fnc_param;
-_centerFromPlayer   = [_this, 2, 0, [0]] call BIS_fnc_param;
-_direction          = [_this, 3, 0, [0]] call BIS_fnc_param;
+_distanceFromPlayer = [_this, 0, LOG_pos_distanceFromPlayer, [0]] call BIS_fnc_param;
+_offsetHeight       = [_this, 1, LOG_pos_offsetHeight, [0]] call BIS_fnc_param;
+_centerFromPlayer   = [_this, 2, LOG_pos_centerFromPlayer, [0]] call BIS_fnc_param;
+_direction          = [_this, 3, LOG_pos_direction, [0]] call BIS_fnc_param;
+
+LOG_pos_distanceFromPlayer = _distanceFromPlayer;
+LOG_pos_offsetHeight       = _offsetHeight;
+LOG_pos_centerFromPlayer   = _centerFromPlayer;
+LOG_pos_direction          = _direction;
 
 // Detach object so we can reattach with new positioning
 detach LOG_currentObject;

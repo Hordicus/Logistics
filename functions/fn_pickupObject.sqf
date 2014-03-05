@@ -7,4 +7,11 @@ if ( !isNil "LOG_currentObject" ) then {
 
 LOG_currentObject = _object;
 
+// Variables to remember current settings in.
+// Doubles as default values.
+LOG_pos_distanceFromPlayer = 5;
+LOG_pos_offsetHeight = 0;
+LOG_pos_centerFromPlayer = 0;
+LOG_pos_direction = 0;
+
 [] call LOG_fnc_positionHeldObject;
