@@ -8,5 +8,6 @@ class LOG {
 		class releaseObject{};
 		class getObjectCorner{};
 		class distanceFromObject{};
+		class getPointerObject{};
 	};
 };
