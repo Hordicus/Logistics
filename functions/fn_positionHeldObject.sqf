@@ -19,6 +19,14 @@ _offsetHeight       = [_this, 1, LOG_pos_offsetHeight, [0]] call BIS_fnc_param;
 _centerFromPlayer   = [_this, 2, LOG_pos_centerFromPlayer, [0]] call BIS_fnc_param;
 _direction          = [_this, 3, LOG_pos_direction, [0]] call BIS_fnc_param;
 
+if ( _direction > 360 ) then {
+	_direction = _direction - 360;
+};
+
+if ( _direction < 0 ) then {
+	_direction = _direction + 360;
+};
+
 LOG_pos_distanceFromPlayer = _distanceFromPlayer;
 LOG_pos_offsetHeight       = _offsetHeight;
 LOG_pos_centerFromPlayer   = _centerFromPlayer;
