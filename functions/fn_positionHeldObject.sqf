@@ -35,7 +35,6 @@ LOG_pos_direction          = _direction;
 // Detach object so we can reattach with new positioning
 detach LOG_currentObject;
 
-// _bb = boundingBoxReal LOG_currentObject;
 _bb = boundingBoxReal LOG_currentObject;
 _bbCenter = boundingCenter LOG_currentObject;
 
@@ -45,12 +44,23 @@ _corner = [_bbCenter select 0, _bbCenter select 1, _bb select 1 select 0, _bb se
 _objSize   = LOG_currentObject call LOG_fnc_objectSize;
 _maxHeight = _objSize select 2;
 
-LOG_currentObject attachTo [player, [
-	_centerFromPlayer,
-	_distanceFromPlayer + abs(_corner select 1),
-	_offsetHeight + (_bbCenter select 2)
-]];
+_intersects = [LOG_currentObject];
 
-LOG_currentObject setDir _direction;
+_adjustDist = 0;
+while { LOG_currentObject in _intersects } do {
+	LOG_currentObject attachTo [player, [
+		_centerFromPlayer,
+		// (_distanceFromPlayer + (abs(_corner select 0) max abs(_corner select 1))),
+		_distanceFromPlayer + abs(_corner select 1) + _adjustDist,
+		_offsetHeight + (_bbCenter select 2)
+	]];
+
+	LOG_currentObject setDir _direction;
+
+	_playerPos = getPosATL player;
+	_intersects = lineIntersectsWith [ATLtoASL [_playerPos select 0, _playerPos select 1, 0], ATLtoASL [_playerPos select 0, _playerPos select 1, _maxHeight]];
+
+	_adjustDist = _adjustDist + 1;
+};
 
 LOG_currentObject
