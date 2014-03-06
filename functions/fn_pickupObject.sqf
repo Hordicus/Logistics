@@ -1,4 +1,4 @@
-private ['_object', '_objSize', '_maxHeight', '_maxLength'];
+private ['_object'];
 _object = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 
 if ( !isNil "LOG_currentObject" ) then {

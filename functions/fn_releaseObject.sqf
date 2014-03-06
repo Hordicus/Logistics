@@ -1,6 +1,6 @@
 /*
 	Description:
-	Detaches held object. Just a nicety. 
+	Detaches held object.
 */
 
 detach LOG_currentObject;

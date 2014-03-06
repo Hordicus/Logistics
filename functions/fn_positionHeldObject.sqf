@@ -14,6 +14,7 @@
 	held object
 */
 
+private ["_distanceFromPlayer","_offsetHeight","_centerFromPlayer","_direction","_bb","_bbCenter","_corner","_objSize","_maxHeight","_intersects","_adjustDist","_playerPos"];
 _distanceFromPlayer = [_this, 0, LOG_pos_distanceFromPlayer, [0]] call BIS_fnc_param;
 _offsetHeight       = [_this, 1, LOG_pos_offsetHeight, [0]] call BIS_fnc_param;
 _centerFromPlayer   = [_this, 2, LOG_pos_centerFromPlayer, [0]] call BIS_fnc_param;

@@ -9,7 +9,7 @@
 	Array - [_maxWidth, _maxLength, _maxHeight]
 */
 
-private ['_object', '_bb', '_p1', '_p2', '_maxWidth', '_maxLength', '_maxHeight'];
+private ["_object","_bb","_p1","_p2","_maxWidth","_maxLength","_maxHeight"];;
 _object = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 _bb = boundingBoxReal _object;
 _p1 = _bb select 0;

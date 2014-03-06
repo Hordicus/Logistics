@@ -1,3 +1,16 @@
+/*
+	Description:
+	Gets the corner of an object using LOG_fnc_getCorner
+	
+	Parameter(s):
+	_object
+	_direction
+	
+	Returns:
+	_corner
+	
+*/
+
 private ['_object', '_direction', '_bb', '_bbCenter', '_corner'];
 
 _object = [_this, 0, LOG_currentObject, [objNull]] call BIS_fnc_param;

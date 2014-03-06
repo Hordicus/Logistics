@@ -1,3 +1,12 @@
+/*
+	Description:
+	Adds KeyDown event handler to main display
+	that implements Buldozer binds.
+	
+	Parameter(s):
+	None
+*/
+
 LOG_keyBindID = (findDisplay 46) displayAddEventHandler ["KeyDown", {
 	if ( isNull LOG_currentObject ) exitwith{};
 	_key = _this select 1;
