@@ -9,5 +9,9 @@ class LOG {
 		class getObjectCorner{};
 		class distanceFromObject{};
 		class getPointerObject{};
+		class addPlayerActions{};
+		class resetActionConditions{};
+		class enableKeybinds{};
+		class disableKeybinds{};
 	};
 };
