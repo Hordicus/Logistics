@@ -43,3 +43,4 @@ else {
 };
 
 _veh setVariable ['LOG_towedObject', _towableObject, true];
+_towableObject setVariable ['LOG_towedTo', _veh, true];

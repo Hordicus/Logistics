@@ -5,5 +5,6 @@ detach _towedObject;
 _towedObject setVelocity velocity _veh;
 
 _veh setVariable ['LOG_towedObject', nil, true];
+_towedObject setVariable ['LOG_towedTo', nil, true];
 
 _towedObject

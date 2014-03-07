@@ -41,7 +41,7 @@ while {true} do {
 			if ( isNull _towedVeh ) then {
 				// Is driver and not towing a vehicle, look for vehicles to tow/lift
 				_vehConfig = (typeOf _veh) call LOG_fnc_config;
-				if ( count _vehConfig > 0 ) then {
+				if ( count _vehConfig > 0 && isNull (_veh getVariable ['LOG_towedTo', objNull]) ) then {
 					if ( _veh isKindOf "Helicopter" && (getPosATL _veh) select 2 <= 100 ) then {
 						_vehPos = getPosASL _veh;
 						_vehPosLess10 = [_vehPos select 0, _vehPos select 1, (_vehPos select 2)-10];
@@ -51,7 +51,7 @@ while {true} do {
 						
 						{
 							_cfg = (typeOf _x) call LOG_fnc_config;
-							if ( count _cfg > 0 && {(_vehConfig select 3) >= (_cfg select 2)} ) exitwith {
+							if ( count _cfg > 0 && {(_vehConfig select 3) >= (_cfg select 2)} && isNull (_x getVariable ['LOG_towedObject', objNull]) ) exitwith {
 								_vehMatch = _x;
 							};
 
@@ -71,7 +71,7 @@ while {true} do {
 
 						{
 							_cfg = (typeOf _x) call LOG_fnc_config;
-							if ( count _cfg > 0 && {(_vehConfig select 3) >= (_cfg select 2)} ) exitwith {
+							if ( count _cfg > 0 && {(_vehConfig select 3) >= (_cfg select 2)} && isNull (_x getVariable ['LOG_towedObject', objNull]) ) exitwith {
 								_vehMatch = _x;
 							};
 							
@@ -83,6 +83,11 @@ while {true} do {
 				};
 			}
 			else {
+				// Make sure we aren't towing while being towed
+				if ( ! isNull (_veh getVariable ['LOG_towedTo', objNull]) ) then {
+					[_veh getVariable ['LOG_towedTo', objNull], _veh] call LOG_fnc_releaseTowedObject;
+				};
+			
 				// Update release text
 				if ( !isNull _towedVeh ) then {
 					['release', format['Release %1', getText (configFile >> "CfgVehicles" >> typeOf _towedVeh >> "displayName")]] call LOG_fnc_renameAction;
