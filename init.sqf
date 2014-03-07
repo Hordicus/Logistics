@@ -19,6 +19,7 @@ while {true} do {
 	_cursorTarget = cursorTarget;
 	LOG_cursorTarget_moveable = objNull;
 	LOG_action_liftVehicle = objNull;
+	LOG_action_towVehicle = objNull;
 	LOG_action_isDriver = (vehicle player) != player && driver vehicle player == player;
 	_veh = vehicle player;
 	
@@ -58,7 +59,27 @@ while {true} do {
 
 						['lift', format['Lift %1', getText (configFile >> "CfgVehicles" >> typeOf _vehMatch >> "displayName")]] call LOG_fnc_renameAction;
 						LOG_action_liftVehicle = _vehMatch;
-					};
+					}
+					else { if ( _veh isKindOf "Car" ) then {
+						_vehSize = _veh call LOG_fnc_objectSize;
+						_vehPos = getPosATL _veh;
+						_vehPos set [2, 1];
+						_vehPosBehind = [_vehPos, 2 + ((_vehSize select 1)/2), (getDir vehicle player)-180] call BIS_fnc_relPos;
+						_vehMatch = objNull;
+						
+						_objectsBehind = (lineIntersectsWith [ATLtoASL _vehPos, ATLtoASL _vehPosBehind]) - [player, _veh];
+
+						{
+							_cfg = (typeOf _x) call LOG_fnc_config;
+							if ( count _cfg > 0 && {(_vehConfig select 3) >= (_cfg select 2)} ) exitwith {
+								_vehMatch = _x;
+							};
+							
+						} count _objectsBehind;
+						
+						['tow', format['Tow %1', getText (configFile >> "CfgVehicles" >> typeOf _vehMatch >> "displayName")]] call LOG_fnc_renameAction;
+						LOG_action_towVehicle = _vehMatch;
+					}};
 				};
 			}
 			else {

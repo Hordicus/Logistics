@@ -2,7 +2,7 @@ private ['_config', '_class', '_result'];
 _config = [
 	// [class, capacity, weight, max towing capacity, moveable]
 	["B_MRAP_01_F", 50, 5000, 10000, false],
-	["B_Heli_Transport_01_F", 20, 10000, 8000, false],
+	["B_Heli_Transport_01_F", 20, 12000, 8000, false],
 	["Land_Cargo40_blue_F", 100, 500, 0, true]
 ];
 

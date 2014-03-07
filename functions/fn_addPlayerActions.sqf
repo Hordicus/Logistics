@@ -205,6 +205,15 @@ _actions set [count _actions, [
 	"LOG_action_isDriver && !isNull ((vehicle player) getVariable ['LOG_towedObject', objNull])"
 ]];
 
+_actions set [count _actions, [
+	"tow",
+	"Tow Vehicle",
+	{ [vehicle player, LOG_action_towVehicle, true] call LOG_fnc_towVehicle },
+	_basePriority,
+	true,
+	"!isNull LOG_action_towVehicle"
+]];
+
 _ids = [];
 {
 	_ids set [count _ids, [_x select 0, _player addAction [
