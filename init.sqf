@@ -46,7 +46,6 @@ while {true} do {
 						_vehPosLess10 = [_vehPos select 0, _vehPos select 1, (_vehPos select 2)-10];
 						
 						_objectsBelow = (lineIntersectsWith [_vehPos, _vehPosLess10]) + (ASLtoATL _vehPos nearEntities 3);
-						hint str _objectsBelow;
 						_vehMatch = objNull;
 						
 						{
@@ -65,7 +64,6 @@ while {true} do {
 			else {
 				// Update release text
 				if ( !isNull _towedVeh ) then {
-					hint format['Release %1', getText (configFile >> "CfgVehicles" >> typeOf _towedVeh >> "displayName")];
 					['release', format['Release %1', getText (configFile >> "CfgVehicles" >> typeOf _towedVeh >> "displayName")]] call LOG_fnc_renameAction;
 				};
 			};
