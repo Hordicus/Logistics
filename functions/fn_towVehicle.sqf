@@ -34,6 +34,10 @@ else {
 		0,
 		-((_vehSize select 2)/2 + 1)
 	]];
+	
+	if ( (_vehSize select 0) < (_vehSize select 1) ) then {
+		_towableObject setDir 90;
+	};
 };
 
 _veh setVariable ['LOG_towedObject', _towableObject, true];
