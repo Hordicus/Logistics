@@ -13,5 +13,12 @@ class LOG {
 		class resetActionConditions{};
 		class enableKeybinds{};
 		class disableKeybinds{};
+		class renameAction{};
+		class towVehicle{};
+		class releaseTowedObject{};
+		
+		class config {
+			file = "logistics\log_config.sqf";
+		};
 	};
 };
