@@ -29,13 +29,15 @@ if ( _behind ) then {
 	]];
 }
 else {
+	_towableObjectCorner = [_towableObject, 0] call LOG_fnc_getObjectCorner;
+
 	_towableObject attachTo [_veh, [
 		0,
 		0,
 		-((_vehSize select 2)/2 + 1)
 	]];
 	
-	if ( (_vehSize select 0) < (_vehSize select 1) ) then {
+	if ( (_towableObjectCorner select 0) > (_towableObjectCorner select 1) ) then {
 		_towableObject setDir 90;
 	};
 };
