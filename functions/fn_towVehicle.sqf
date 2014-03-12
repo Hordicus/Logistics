@@ -20,26 +20,28 @@ _bbCenter = boundingCenter _veh;
 
 
 _corner = [_bbCenter select 0, _bbCenter select 1, _bb select 1 select 0, _bb select 1 select 1, 0] call LOG_fnc_getCorner;
+_towableObjectCorner = [_towableObject, 0] call LOG_fnc_getObjectCorner;
+_towableObjectCenter = boundingCenter _towableObject;
+
+hint str ((_bbCenter select 2) - (_towableObjectCenter select 2));
 
 if ( _behind ) then {
 	_towableObject attachTo [_veh, [
 		0,
-		-(abs(_corner select 1) + 2),
-		0
+		-((abs(_corner select 1) + 0.5) + (abs(_towableObjectCorner select 0))),
+		-((_bbCenter select 2) - (_towableObjectCenter select 2))
 	]];
 }
 else {
-	_towableObjectCorner = [_towableObject, 0] call LOG_fnc_getObjectCorner;
-
 	_towableObject attachTo [_veh, [
 		0,
 		0,
 		-((_vehSize select 2)/2 + 1)
 	]];
-	
-	if ( (_towableObjectCorner select 0) > (_towableObjectCorner select 1) ) then {
-		_towableObject setDir 90;
-	};
+};
+
+if ( (_towableObjectCorner select 0) > (_towableObjectCorner select 1) ) then {
+	_towableObject setDir 90;
 };
 
 _veh setVariable ['LOG_towedObject', _towableObject, true];

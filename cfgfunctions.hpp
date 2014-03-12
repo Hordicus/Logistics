@@ -16,6 +16,7 @@ class LOG {
 		class renameAction{};
 		class towVehicle{};
 		class releaseTowedObject{};
+		class isTowable{};
 		
 		class config {
 			file = "logistics\log_config.sqf";

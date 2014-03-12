@@ -42,43 +42,28 @@ while {true} do {
 				// Is driver and not towing a vehicle, look for vehicles to tow/lift
 				_vehConfig = (typeOf _veh) call LOG_fnc_config;
 				if ( count _vehConfig > 0 && isNull (_veh getVariable ['LOG_towedTo', objNull]) ) then {
-					if ( _veh isKindOf "Helicopter" && (getPosATL _veh) select 2 <= 100 ) then {
+					if ( _veh isKindOf "Helicopter" ) then {
 						_vehPos = getPosASL _veh;
 						_vehPosLess10 = [_vehPos select 0, _vehPos select 1, (_vehPos select 2)-10];
+						_objectsBelow = (lineIntersectsWith [_vehPos, _vehPosLess10]) + (ASLtoATL _vehPosLess10 nearEntities 3);
 						
-						_objectsBelow = (lineIntersectsWith [_vehPos, _vehPosLess10]) + (ASLtoATL _vehPos nearEntities 3);
-						_vehMatch = objNull;
-						
-						{
-							_cfg = (typeOf _x) call LOG_fnc_config;
-							if ( count _cfg > 0 && {(_vehConfig select 3) >= (_cfg select 2)} && isNull (_x getVariable ['LOG_towedObject', objNull]) ) exitwith {
-								_vehMatch = _x;
-							};
-
-						} count _objectsBelow;
-
-						['lift', format['Lift %1', getText (configFile >> "CfgVehicles" >> typeOf _vehMatch >> "displayName")]] call LOG_fnc_renameAction;
-						LOG_action_liftVehicle = _vehMatch;
+						if ( count _objectsBelow > 0 && {[_objectsBelow select 0, _veh] call LOG_fnc_isTowable} ) then {
+							['lift', format['Lift %1', getText (configFile >> "CfgVehicles" >> typeOf (_objectsBelow select 0) >> "displayName")]] call LOG_fnc_renameAction;
+							LOG_action_liftVehicle = _objectsBelow select 0;
+						};
 					}
 					else { if ( _veh isKindOf "Car" ) then {
 						_vehSize = _veh call LOG_fnc_objectSize;
 						_vehPos = getPosATL _veh;
 						_vehPos set [2, 1];
 						_vehPosBehind = [_vehPos, 2 + ((_vehSize select 1)/2), (getDir vehicle player)-180] call BIS_fnc_relPos;
-						_vehMatch = objNull;
 						
 						_objectsBehind = (lineIntersectsWith [ATLtoASL _vehPos, ATLtoASL _vehPosBehind]) - [player, _veh];
-
-						{
-							_cfg = (typeOf _x) call LOG_fnc_config;
-							if ( count _cfg > 0 && {(_vehConfig select 3) >= (_cfg select 2)} && isNull (_x getVariable ['LOG_towedObject', objNull]) ) exitwith {
-								_vehMatch = _x;
-							};
-							
-						} count _objectsBehind;
 						
-						['tow', format['Tow %1', getText (configFile >> "CfgVehicles" >> typeOf _vehMatch >> "displayName")]] call LOG_fnc_renameAction;
-						LOG_action_towVehicle = _vehMatch;
+						if ( count _objectsBehind > 0 && {[_objectsBehind select 0, _veh] call LOG_fnc_isTowable} ) then {
+							['tow', format['Tow %1', getText (configFile >> "CfgVehicles" >> typeOf (_objectsBehind select 0) >> "displayName")]] call LOG_fnc_renameAction;
+							LOG_action_towVehicle = _objectsBehind select 0;
+						};
 					}};
 				};
 			}
