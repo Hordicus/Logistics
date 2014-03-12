@@ -1,3 +1,18 @@
+/*
+	Description:
+	Adds _object to inventory of _container
+	
+	Parameter(s):
+	_object - Object or string (type of object)
+	_container - container to add _object to
+	_cache - if _object is an actual object store info about it and then delete it
+	
+	Returns:
+	None
+*/
+
+private ["_object","_container","_cache","_contents","_type","_index","_info"];
+
 _object = [_this, 0, "", ["", objNull]] call BIS_fnc_param;
 _container = [_this, 1, objNull, [objNull]] call BIS_fnc_param;
 _cache = [_this, 2, true, [true]] call BIS_fnc_param;
@@ -14,7 +29,12 @@ if ( typeName _object == "STRING" ) then {
 		};
 	} forEach _contents;
 	
-	(_contents select _index) set [1, (_contents select _index select 1)+1];
+	if ( _index > -1 ) then {
+		(_contents select _index) set [1, (_contents select _index select 1)+1];
+	}
+	else {
+		_contents set [count _contents, [_object, 1]];
+	};
 }
 else { if ( typeName _object == "OBJECT" ) then {
 	_type = typeOf _object;
