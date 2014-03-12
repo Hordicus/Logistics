@@ -17,6 +17,10 @@ class LOG {
 		class towVehicle{};
 		class releaseTowedObject{};
 		class isTowable{};
+		class showContents{};
+		class unloadItem{};
+		class contentsSize{};
+		class loadInObject{};
 		
 		class config {
 			file = "logistics\log_config.sqf";

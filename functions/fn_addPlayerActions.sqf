@@ -214,6 +214,24 @@ _actions set [count _actions, [
 	"!isNull LOG_action_towVehicle"
 ]];
 
+_actions set [count _actions, [
+	"show_contents",
+	"Show Contents",
+	{ [LOG_action_showContents] call LOG_fnc_showContents; },
+	_basePriority,
+	true,
+	"!isNull LOG_action_showContents && isNull LOG_currentObject"
+]];
+
+_actions set [count _actions, [
+	"load_object",
+	"Load Object",
+	{ [LOG_currentObject, LOG_action_showContents, true] call LOG_fnc_loadInObject; },
+	_basePriority,
+	true,
+	"!isNull LOG_action_showContents && !isNull LOG_currentObject"
+]];
+
 _ids = [];
 {
 	_ids set [count _ids, [_x select 0, _player addAction [

@@ -4,3 +4,6 @@
 #define CONFIG_INDEX_TOWINGCAPACITY 3
 #define CONFIG_INDEX_MOVEABLE 4
 #define CONFIG_INDEX_TOWABLE 5
+
+#define objectContentsIDD 4000
+#define LOG_OCcontents_idc 4001

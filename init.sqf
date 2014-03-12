@@ -10,10 +10,13 @@ LOG_pos_minOffsetHeight = -1;
 LOG_pos_maxCenterFromPlayer = 1;
 LOG_pos_minCenterFromPlayer = -1;
 
+LOG_showingContentsOf = objNull;
+
 [] call LOG_fnc_resetActionConditions;
 
 // Monitor cursorTarget.
 // Doing checking in addAction will run code every frame.
+
 player call LOG_fnc_addPlayerActions;
 while {true} do {
 	_cursorTarget = cursorTarget;
@@ -21,16 +24,29 @@ while {true} do {
 	LOG_action_liftVehicle = objNull;
 	LOG_action_towVehicle = objNull;
 	LOG_action_isDriver = (vehicle player) != player && driver vehicle player == player;
+	LOG_action_showContents = objNull;
 	_veh = vehicle player;
 	
 	if ( _veh == player ) then {
 		// Things to check when not in a vehicle
 		if (
-		_cursorTarget getVariable ['LOG_moveable', false ]
-		&& { [_cursorTarget, player] call LOG_fnc_distanceFromObject < 5 } // Do quick distance check
-		&& { _cursorTarget in (5 call LOG_fnc_getPointerObject) } // More accurate distance check
+			[_cursorTarget, player] call LOG_fnc_distanceFromObject < 5 // Do quick distance check
+			&& { _cursorTarget in (5 call LOG_fnc_getPointerObject) } // More accurate distance check
 		) then {
-			LOG_cursorTarget_moveable = _cursorTarget;
+			if ( _cursorTarget getVariable ['LOG_moveable', false ] ) then {
+				LOG_cursorTarget_moveable = _cursorTarget;
+			};
+			
+			if ( ((typeOf _cursorTarget) call LOG_fnc_contentsSize) > 0 ) then {
+				LOG_action_showContents = _cursorTarget;
+				_containerName = getText (configFile >> "CfgVehicles" >> typeOf _cursorTarget >> "displayName");
+				['show_contents', format['Show %1 Contents', _containerName]] call LOG_fnc_renameAction;
+
+				if ( !isNull LOG_currentObject ) then {
+					_heldName = getText (configFile >> "CfgVehicles" >> typeOf LOG_currentObject >> "displayName");
+					['load_object', format['Load %1 into %2', _heldName, _containerName]] call LOG_fnc_renameAction;
+				};
+			};
 		};
 	}
 	else {
