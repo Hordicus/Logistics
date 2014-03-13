@@ -20,6 +20,7 @@ class LOG {
 		class showContents{};
 		class unloadItem{};
 		class contentsSize{};
+		class isMoveable{};
 		class loadInObject{};
 		
 		class config {

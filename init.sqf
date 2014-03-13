@@ -33,7 +33,7 @@ while {true} do {
 			[_cursorTarget, player] call LOG_fnc_distanceFromObject < 5 // Do quick distance check
 			&& { _cursorTarget in (5 call LOG_fnc_getPointerObject) } // More accurate distance check
 		) then {
-			if ( _cursorTarget getVariable ['LOG_moveable', false ] ) then {
+			if ( _cursorTarget call LOG_fnc_isMoveable ) then {
 				LOG_cursorTarget_moveable = _cursorTarget;
 			};
 			

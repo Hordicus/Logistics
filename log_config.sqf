@@ -6,7 +6,29 @@ _config = [
 	["Land_Cargo40_blue_F", 100, 500, 0, true, false],
 	["Land_Cargo40_red_F", 100, 500, 0, true, false],
 	["Land_CargoBox_V1_F", 50, 250, 0, true, true],
-	["C_Hatchback_01_sport_F", 20, 250, 5000, false, true]
+	["C_Hatchback_01_sport_F", 20, 250, 5000, false, true],
+	
+	// Building Materials
+	["Land_CinderBlocks_F", 0, 50, 0, true, false],
+	["Land_CncBarrier_F", 0, 50, 0, true, false],
+	["Land_CncWall1_F", 0, 50, 0, true, false],
+	["Land_Timbers_F", 0, 50, 0, true, false],
+	["Land_A_Castle_Bergfrit", 0, 200, 0, true, false],
+	["Land_A_Castle_Stairs_A", 0, 100, 0, true, false],
+	["Land_Ind_SawMillPen", 0, 100, 0, true, false],
+	["Land_Scaffolding_F", 0, 50, 0, true, false],
+	["Land_TableDesk_F", 0, 25, 0, true, false],
+	["Land_BagBunker_Large_F", 0, 50, 0, true, false],
+	["Land_BagBunker_Tower_F", 0, 50, 0, true, false],
+	["BlockConcrete_F", 0, 50, 0, true, false],
+	["Land_RampConcrete_F", 0, 50, 0, true, false],
+	["Land_RampConcreteHigh_F", 0, 50, 0, true, false],
+	["Land_CncBarrierMedium4_F", 0, 50, 0, true, false],
+	["Land_CncWall4_F", 0, 50, 0, true, false],
+	["Land_BagBunker_Small_F", 0, 25, 0, true, false],
+	["Land_BagFence_Long_F", 0, 25, 0, true, false],
+	["Land_BagFence_Round_F", 0, 25, 0, true, false],
+	["Box_IND_Ammo_F", 0, 25, 0, true, false]
 ];
 
 if ( isNil "LOG_configLookup" ) then {
