@@ -19,9 +19,9 @@ class LOG {
 		class isTowable{};
 		class showContents{};
 		class unloadItem{};
-		class contentsSize{};
-		class isMoveable{};
+		class containerSize{};
 		class loadInObject{};
+		class isMoveable{};
 		
 		class config {
 			file = "logistics\log_config.sqf";

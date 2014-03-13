@@ -37,7 +37,7 @@ while {true} do {
 				LOG_cursorTarget_moveable = _cursorTarget;
 			};
 			
-			if ( ((typeOf _cursorTarget) call LOG_fnc_contentsSize) > 0 ) then {
+			if ( ((typeOf _cursorTarget) call LOG_fnc_containerSize) > 0 ) then {
 				LOG_action_showContents = _cursorTarget;
 				_containerName = getText (configFile >> "CfgVehicles" >> typeOf _cursorTarget >> "displayName");
 				['show_contents', format['Show %1 Contents', _containerName]] call LOG_fnc_renameAction;
