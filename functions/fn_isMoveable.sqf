@@ -20,4 +20,4 @@ if ( typeName _object == "OBJECT" ) then {
 
 _cfg = _object call LOG_fnc_config;
 
-count _cfg > 0 && { _cfg select CONFIG_INDEX_MOVEABLE }
+count _cfg > 0 && { _cfg select CONFIG_INDEX_SIZE >= 0 }
