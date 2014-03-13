@@ -22,6 +22,6 @@ if ( typeName _object == "OBJECT" ) then {
 
 _roomUsed = _container call LOG_fnc_roomUsed;
 _containerSize = _container call LOG_fnc_containerSize;
-_objectSize = (_object call LOG_fnc_config) select CONFIG_INDEX_WEIGHT;
+_objectSize = (_object call LOG_fnc_config) select CONFIG_INDEX_SIZE;
 
 (_roomUsed + _objectSize) <= _containerSize

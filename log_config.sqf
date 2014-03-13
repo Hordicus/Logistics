@@ -1,34 +1,34 @@
 private ['_config', '_class', '_result', '_classes'];
 _config = [
-	// [class, capacity, weight, max towing capacity, moveable, towable]
-	["MRAP_01_base_F", 50, 5000, 10000, false, true],
-	["B_Heli_Transport_01_F", 20, 12000, 8000, false, false],
-	["Land_Cargo40_blue_F", 500, 500, 0, true, false],
-	["Land_Cargo40_red_F", 500, 500, 0, true, false],
-	["Land_CargoBox_V1_F", 250, 250, 0, true, true],
-	["C_Hatchback_01_sport_F", 20, 250, 5000, false, true],
+	// [class, capacity, size, weight, max towing capacity, moveable]
+	["MRAP_01_base_F",         50,	-1,	5000,	10000,	false],
+	["B_Heli_Transport_01_F",  20,	-1,	12000,	8000,	false],
+	["Land_Cargo40_blue_F",    500,	-1,	500,	0,		true],
+	["Land_Cargo40_red_F",     500,	-1,	500,	0,		true],
+	["Land_CargoBox_V1_F",     250,	-1,	250,	0,		true],
+	["C_Hatchback_01_sport_F", 20,	-1,	250,	5000,	false],
 	
-	// Building Materials
-	["Land_CinderBlocks_F", 0, 50, 0, true, false],
-	["Land_CncBarrier_F", 0, 50, 0, true, false],
-	["Land_CncWall1_F", 0, 50, 0, true, false],
-	["Land_Timbers_F", 0, 50, 0, true, false],
-	["Land_A_Castle_Bergfrit", 0, 200, 0, true, false],
-	["Land_A_Castle_Stairs_A", 0, 100, 0, true, false],
-	["Land_Ind_SawMillPen", 0, 100, 0, true, false],
-	["Land_Scaffolding_F", 0, 50, 0, true, false],
-	["Land_TableDesk_F", 0, 25, 0, true, false],
-	["Land_BagBunker_Large_F", 0, 50, 0, true, false],
-	["Land_BagBunker_Tower_F", 0, 50, 0, true, false],
-	["BlockConcrete_F", 0, 50, 0, true, false],
-	["Land_RampConcrete_F", 0, 50, 0, true, false],
-	["Land_RampConcreteHigh_F", 0, 50, 0, true, false],
-	["Land_CncBarrierMedium4_F", 0, 50, 0, true, false],
-	["Land_CncWall4_F", 0, 50, 0, true, false],
-	["Land_BagBunker_Small_F", 0, 25, 0, true, false],
-	["Land_BagFence_Long_F", 0, 25, 0, true, false],
-	["Land_BagFence_Round_F", 0, 25, 0, true, false],
-	["Box_IND_Ammo_F", 0, 25, 0, true, false]
+	//	Building Materials
+	["Land_CinderBlocks_F",      0,	50,		-1,	0,	true],
+	["Land_CncBarrier_F",        0,	50,		-1,	0,	true],
+	["Land_CncWall1_F",          0,	50,		-1,	0,	true],
+	["Land_Timbers_F",           0,	50,		-1,	0,	true],
+	["Land_A_Castle_Bergfrit",   0,	200,	-1,	0,	true],
+	["Land_A_Castle_Stairs_A",   0,	100,	-1,	0,	true],
+	["Land_Ind_SawMillPen",      0,	100,	-1,	0,	true],
+	["Land_Scaffolding_F",       0,	50,		-1,	0,	true],
+	["Land_TableDesk_F",         0,	25,		-1,	0,	true],
+	["Land_BagBunker_Large_F",   0,	50,		-1,	0,	true],
+	["Land_BagBunker_Tower_F",   0,	50,		-1,	0,	true],
+	["BlockConcrete_F",          0,	50,		-1,	0,	true],
+	["Land_RampConcrete_F",      0,	50,		-1,	0,	true],
+	["Land_RampConcreteHigh_F",  0,	50,		-1,	0,	true],
+	["Land_CncBarrierMedium4_F", 0,	50,		-1,	0,	true],
+	["Land_CncWall4_F",          0,	50,		-1,	0,	true],
+	["Land_BagBunker_Small_F",   0,	25,		-1,	0,	true],
+	["Land_BagFence_Long_F",     0,	25,		-1,	0,	true],
+	["Land_BagFence_Round_F",    0,	25,		-1,	0,	true],
+	["Box_IND_Ammo_F",           0,	25,		-1,	0,	true]
 ];
 
 if ( isNil "LOG_configLookup" ) then {

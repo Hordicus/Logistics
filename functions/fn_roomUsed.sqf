@@ -35,7 +35,7 @@ else {
 		};
 
 		if ( count _cfg > 0 ) then {
-			_count = _count + (_cfg select CONFIG_INDEX_WEIGHT);
+			_count = _count + (_cfg select CONFIG_INDEX_SIZE);
 		};
 	};
 } forEach _contents;

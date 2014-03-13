@@ -19,7 +19,7 @@ _veh    = [_this, 1, objNull, [objNull]] call BIS_fnc_param;
 _objCfg = (typeOf _object) call LOG_fnc_config;
 _result = false;
 
-if ( count _objCfg > 0 && { _objCfg select CONFIG_INDEX_TOWABLE || _veh isKindOf "Helicopter" }) then {
+if ( count _objCfg > 0 && { _objCfg select CONFIG_INDEX_WEIGHT >= 0 }) then {
 	if ( !isNull _veh ) then {
 		_vehCfg = (typeOf _veh) call LOG_fnc_config;
 		_result = count _vehCfg > 0 && _vehCfg select CONFIG_INDEX_TOWINGCAPACITY >= _objCfg select CONFIG_INDEX_WEIGHT

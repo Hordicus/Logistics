@@ -23,8 +23,6 @@ _corner = [_bbCenter select 0, _bbCenter select 1, _bb select 1 select 0, _bb se
 _towableObjectCorner = [_towableObject, 0] call LOG_fnc_getObjectCorner;
 _towableObjectCenter = boundingCenter _towableObject;
 
-hint str ((_bbCenter select 2) - (_towableObjectCenter select 2));
-
 if ( _behind ) then {
 	_towableObject attachTo [_veh, [
 		0,
@@ -33,9 +31,12 @@ if ( _behind ) then {
 	]];
 }
 else {
+	_vehCenterOfMass = getCenterOfMass _veh;
+	_towableCenterOfmass = getCenterOfMass _towableObject;
+	
 	_towableObject attachTo [_veh, [
-		0,
-		0,
+		(_vehCenterOfMass select 0) - (_towableCenterOfmass select 0),
+		(_vehCenterOfMass select 1) - (_towableCenterOfmass select 1),
 		-((_vehSize select 2)/2 + 1)
 	]];
 };

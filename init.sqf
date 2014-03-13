@@ -65,9 +65,9 @@ while {true} do {
 				_vehConfig = (typeOf _veh) call LOG_fnc_config;
 				if ( count _vehConfig > 0 && isNull (_veh getVariable ['LOG_towedTo', objNull]) ) then {
 					if ( _veh isKindOf "Helicopter" ) then {
-						_vehPos = getPosASL _veh;
+						_vehPos = _veh modelToWorld (getCenterOfMass _veh);
 						_vehPosLess10 = [_vehPos select 0, _vehPos select 1, (_vehPos select 2)-10];
-						_objectsBelow = (lineIntersectsWith [_vehPos, _vehPosLess10]) + (ASLtoATL _vehPosLess10 nearEntities 3);
+						_objectsBelow = (lineIntersectsWith [ATLtoASL _vehPos, ATLtoASL _vehPosLess10]) + (_vehPosLess10 nearEntities 3);
 						
 						if ( count _objectsBelow > 0 && {[_objectsBelow select 0, _veh] call LOG_fnc_isTowable} ) then {
 							['lift', format['Lift %1', getText (configFile >> "CfgVehicles" >> typeOf (_objectsBelow select 0) >> "displayName")]] call LOG_fnc_renameAction;
