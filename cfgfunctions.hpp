@@ -23,6 +23,7 @@ class LOG {
 		class loadInObject{};
 		class isMoveable{};
 		class roomUsed{};
+		class hasRoom{};
 		
 		class config {
 			file = "logistics\log_config.sqf";

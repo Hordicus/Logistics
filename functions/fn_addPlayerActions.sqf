@@ -226,10 +226,17 @@ _actions set [count _actions, [
 _actions set [count _actions, [
 	"load_object",
 	"Load Object",
-	{ [LOG_currentObject, LOG_action_showContents, true] call LOG_fnc_loadInObject; },
+	{
+		if ( [LOG_action_showContents, LOG_currentObject] call LOG_fnc_hasRoom ) then {
+			[LOG_currentObject, LOG_action_showContents, true] call LOG_fnc_loadInObject;
+		}
+		else {
+			hint "The container does not have room for that object";
+		};
+	},
 	_basePriority,
 	true,
-	"!isNull LOG_action_showContents && !isNull LOG_currentObject"
+	"!isNull LOG_action_showContents && !isNull LOG_currentObject && LOG_currentObject != LOG_action_showContents"
 ]];
 
 _ids = [];

@@ -44,7 +44,13 @@ while {true} do {
 
 				if ( !isNull LOG_currentObject ) then {
 					_heldName = getText (configFile >> "CfgVehicles" >> typeOf LOG_currentObject >> "displayName");
-					['load_object', format['Load %1 into %2', _heldName, _containerName]] call LOG_fnc_renameAction;
+					_text = format['Load %1 into %2', _heldName, _containerName];
+					
+					if !( [_cursorTarget, LOG_currentObject] call LOG_fnc_hasRoom ) then {
+						_text = format['<t color="#FF0000">%1</t>', _text];
+					};
+					
+					['load_object', _text] call LOG_fnc_renameAction;
 				};
 			};
 		};
