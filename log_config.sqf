@@ -3,9 +3,9 @@ _config = [
 	// [class, capacity, weight, max towing capacity, moveable, towable]
 	["MRAP_01_base_F", 50, 5000, 10000, false, true],
 	["B_Heli_Transport_01_F", 20, 12000, 8000, false, false],
-	["Land_Cargo40_blue_F", 100, 500, 0, true, false],
-	["Land_Cargo40_red_F", 100, 500, 0, true, false],
-	["Land_CargoBox_V1_F", 50, 250, 0, true, true],
+	["Land_Cargo40_blue_F", 500, 500, 0, true, false],
+	["Land_Cargo40_red_F", 500, 500, 0, true, false],
+	["Land_CargoBox_V1_F", 250, 250, 0, true, true],
 	["C_Hatchback_01_sport_F", 20, 250, 5000, false, true],
 	
 	// Building Materials

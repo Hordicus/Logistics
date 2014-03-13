@@ -1,16 +1,20 @@
+private ["_container","_item","_contents","_obj","_object","_mags","_weapons","_items","_i"];
+
 _container = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 _item      = [_this, 1, "", [""]] call BIS_fnc_param;
 
 _contents  = _container getVariable ['LOG_contents', []];
+_obj = objNull;
 
 // Find first instance of _item
 {
+	if ( !isNull _obj ) exitwith{};
+
 	if ( !isNil "_x" ) then {
 		if ( typeName _x == "ARRAY" ) then {
-			if ( _x select 0 == _item ) exitwith {
+			if ( _x select 0 == _item ) then {
 				if ( count _x == 2 ) then {
 					_obj = createVehicle [_x select 0, [0,0,0], [], 0, "CAN_COLLIDE"];
-					_obj call LOG_fnc_pickupObject;
 					
 					if ( (_x select 1) == 1 ) then {
 						_contents set [_forEachIndex, nil];
@@ -19,7 +23,7 @@ _contents  = _container getVariable ['LOG_contents', []];
 						(_contents select _forEachIndex) set [1, (_contents select _forEachIndex select 1)-1];
 					};
 				}
-				else {				
+				else {
 					_obj = createVehicle [_x select 0, [0,0,0], [], 0, "CAN_COLLIDE"];
 					_obj setDamage (_x select 1);
 					
@@ -43,14 +47,15 @@ _contents  = _container getVariable ['LOG_contents', []];
 						_obj addItemCargoGlobal [_items select 0 select _i, _items select 1 select _i];
 					};
 					
-					_obj call LOG_fnc_pickupObject;
 					_contents set [_forEachIndex, nil];
 				};
 			};
 		}
-		else { if (typeOf _x == _item ) exitwith {
-			_x call LOG_fnc_pickupObject;
+		else { if (typeOf _x == _item ) then {
+			_obj = _x;
 			_contents set [_forEachIndex, nil];
 		}};
 	};
 } forEach _contents;
+
+_obj call LOG_fnc_pickupObject;
