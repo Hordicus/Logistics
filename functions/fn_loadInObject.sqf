@@ -53,6 +53,12 @@ else { if ( typeName _object == "OBJECT" ) then {
 	}
 	else {
 		_contents set [count _contents, _object];
+		
+		[] call LOG_fnc_releaseObject;
+		_rand = (random 5000);
+		
+		_object enableSimulation false;
+		_object setPosATL [-_rand, -_rand, 1000 + _rand];
 	};
 }};
 

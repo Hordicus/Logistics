@@ -52,6 +52,7 @@ _obj = objNull;
 			};
 		}
 		else { if (typeOf _x == _item ) then {
+			_x enableSimulation true;
 			_obj = _x;
 			_contents set [_forEachIndex, nil];
 		}};
