@@ -12,10 +12,16 @@ LOG_pos_minCenterFromPlayer = -1;
 
 LOG_showingContentsOf = objNull;
 
+LOG_PVAR_UNLOADITEM_RES = objNull;
+
 [] call LOG_fnc_resetActionConditions;
 
 // Monitor cursorTarget.
 // Doing checking in addAction will run code every frame.
+
+if ( isServer ) then {
+	execVM "logistics\server.sqf";
+};
 
 player call LOG_fnc_addPlayerActions;
 while {true} do {
