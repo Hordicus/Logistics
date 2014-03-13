@@ -11,7 +11,12 @@ LOG_showingContentsOf = _container;
 _types = [];
 _rows = [];
 
-{
+_used = [_contents] call LOG_fnc_roomUsed;
+_maxCap = _container call LOG_fnc_containerSize;
+
+ctrlSetText [LOG_OCroom_idc, format['%1 / %2', _used, _maxCap]];
+
+{   
 	if ( !isNil "_x" ) then {
 		_type = "";
 		_count = 0;

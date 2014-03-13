@@ -7,3 +7,4 @@
 
 #define objectContentsIDD 4000
 #define LOG_OCcontents_idc 4001
+#define LOG_OCroom_idc 4002

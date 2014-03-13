@@ -100,7 +100,15 @@ class objectContents {
 			x = safezoneX + safezoneW * (0.5 - 0.4/2);
 			y = safezoneY + safezoneH * (0.5 - 0.3/2);
 		};
+		
+		class OCroom : OCtitle {
+			text = "0 / 0";
+			sizeEx = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1);
 
+			style = ST_RIGHT;
+			colorBackground[] = {0,0,0,0};
+			idc = LOG_OCroom_idc;
+		};
 	};
 
 	class controls {
