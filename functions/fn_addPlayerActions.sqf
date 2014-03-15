@@ -46,7 +46,7 @@ _actions set [count _actions, [
 	"release_object",
 	"Release Object",
 	{ [] call LOG_fnc_releaseObject },
-	_basePriority,
+	_basePriority+10,
 	true,
 	"!isNull LOG_currentObject"
 ]];
@@ -200,7 +200,7 @@ _actions set [count _actions, [
 	"release",
 	"Release Vehicle",
 	{ [vehicle player] call LOG_fnc_releaseTowedObject },
-	_basePriority,
+	_basePriority+10,
 	true,
 	"LOG_action_isDriver && !isNull ((vehicle player) getVariable ['LOG_towedObject', objNull])"
 ]];
