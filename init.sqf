@@ -23,6 +23,8 @@ if ( isServer ) then {
 	execVM "logistics\server.sqf";
 };
 
+if ( isDedicated ) exitwith{};
+
 player call LOG_fnc_addPlayerActions;
 while {true} do {
 	_cursorTarget = cursorTarget;
