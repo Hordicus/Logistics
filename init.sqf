@@ -13,11 +13,17 @@ LOG_pos_minCenterFromPlayer = -1;
 LOG_showingContentsOf = objNull;
 
 LOG_PVAR_UNLOADITEM_RES = objNull;
+LOG_PVAR_SETVELOCITY = objNull;
 
 [] call LOG_fnc_resetActionConditions;
 
-// Monitor cursorTarget.
-// Doing checking in addAction will run code every frame.
+"LOG_PVAR_SETVELOCITY" addPublicVariableEventHandler {
+	private ["_veh","_velocity"];
+	_veh      = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
+	_velocity = [_this select 1, 1, [0,0,0], [[]], [3]] call BIS_fnc_param;
+	
+	_veh setVelocity _velocity;
+};
 
 if ( isServer ) then {
 	execVM "logistics\server.sqf";

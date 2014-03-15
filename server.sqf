@@ -1,4 +1,5 @@
 LOG_PVAR_UNLOADITEM = objNull;
+LOG_PVAR_SETVELOCITY_SERVER = objNull;
 
 "LOG_PVAR_UNLOADITEM" addPublicVariableEventHandler {
 	private ["_client","_container","_item","_obj","_contents","_mags","_weapons","_items"];
@@ -75,4 +76,20 @@ LOG_PVAR_UNLOADITEM = objNull;
 	_container setVariable ['LOG_contents', _contents, true];
 	LOG_PVAR_UNLOADITEM_RES = _obj;
 	_client publicVariableClient "LOG_PVAR_UNLOADITEM_RES";
+};
+
+"LOG_PVAR_SETVELOCITY_SERVER" addPublicVariableEventHandler {
+	private ["_client","_veh","_velocity"];
+	_veh      = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
+	_velocity = [_this select 1, 1, [0,0,0], [[]], [3]] call BIS_fnc_param;
+	_client   = owner _veh;
+
+	if ( local _veh ) then {
+		_veh setVelocity _velocity;
+	}
+	else {	
+		// Pass info on to owner of object
+		LOG_PVAR_SETVELOCITY = [_veh, _velocity];
+		_client publicVariableClient "LOG_PVAR_SETVELOCITY";
+	};
 };
