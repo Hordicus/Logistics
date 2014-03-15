@@ -190,7 +190,14 @@ _actions set [count _actions, [
 _actions set [count _actions, [
 	"lift",
 	"Lift Vehicle",
-	{ [vehicle player, LOG_action_liftVehicle, false] call LOG_fnc_towVehicle },
+	{
+		if ( [LOG_action_liftVehicle, vehicle player] call LOG_fnc_isTowable ) then {
+			[vehicle player, LOG_action_liftVehicle, false] call LOG_fnc_towVehicle;
+		}
+		else {
+			hint "You can't lift that with this helicopter";
+		};
+	},
 	_basePriority,
 	true,
 	"!isNull LOG_action_liftVehicle"
@@ -208,7 +215,14 @@ _actions set [count _actions, [
 _actions set [count _actions, [
 	"tow",
 	"Tow Vehicle",
-	{ [vehicle player, LOG_action_towVehicle, true] call LOG_fnc_towVehicle },
+	{
+		if ( [LOG_action_towVehicle, vehicle player] call LOG_fnc_isTowable ) then {
+			[vehicle player, LOG_action_towVehicle, true] call LOG_fnc_towVehicle;
+		}
+		else {
+			hint "You can't tow that with this vehicle";
+		};
+	},
 	_basePriority,
 	true,
 	"!isNull LOG_action_towVehicle"

@@ -75,10 +75,17 @@ while {true} do {
 					if ( _veh isKindOf "Helicopter" ) then {
 						_vehPos = _veh modelToWorld (getCenterOfMass _veh);
 						_vehPosLess10 = [_vehPos select 0, _vehPos select 1, (_vehPos select 2)-10];
-						_objectsBelow = (lineIntersectsWith [ATLtoASL _vehPos, ATLtoASL _vehPosLess10]) + (_vehPosLess10 nearEntities 3);
+						_objectsBelow = (lineIntersectsWith [ATLtoASL _vehPos, ATLtoASL _vehPosLess10]) - [_veh] - allUnits;
 						
-						if ( count _objectsBelow > 0 && {[_objectsBelow select 0, _veh] call LOG_fnc_isTowable} ) then {
-							['lift', format['Lift %1', getText (configFile >> "CfgVehicles" >> typeOf (_objectsBelow select 0) >> "displayName")]] call LOG_fnc_renameAction;
+						if ( count _objectsBelow > 0 && {[_objectsBelow select 0] call LOG_fnc_isTowable} ) then {
+							_text = format['Lift %1', getText (configFile >> "CfgVehicles" >> typeOf (_objectsBelow select 0) >> "displayName")];
+							
+							if ( [_objectsBelow select 0, _veh] call LOG_fnc_isTowable ) then {
+								['lift', _text] call LOG_fnc_renameAction;
+							}
+							else {
+								['lift', format['<t color="#FF0000">%1</t>', _text]] call LOG_fnc_renameAction;
+							};
 							LOG_action_liftVehicle = _objectsBelow select 0;
 						};
 					}
@@ -88,10 +95,17 @@ while {true} do {
 						_vehPos set [2, 1];
 						_vehPosBehind = [_vehPos, 2 + ((_vehSize select 1)/2), (getDir vehicle player)-180] call BIS_fnc_relPos;
 						
-						_objectsBehind = (lineIntersectsWith [ATLtoASL _vehPos, ATLtoASL _vehPosBehind]) - [player, _veh];
+						_objectsBehind = (lineIntersectsWith [ATLtoASL _vehPos, ATLtoASL _vehPosBehind]) - [_veh] - allUnits;
 						
-						if ( count _objectsBehind > 0 && {[_objectsBehind select 0, _veh] call LOG_fnc_isTowable} ) then {
-							['tow', format['Tow %1', getText (configFile >> "CfgVehicles" >> typeOf (_objectsBehind select 0) >> "displayName")]] call LOG_fnc_renameAction;
+						if ( count _objectsBehind > 0 && {[_objectsBehind select 0] call LOG_fnc_isTowable} ) then {
+							_text = format['Tow %1', getText (configFile >> "CfgVehicles" >> typeOf (_objectsBehind select 0) >> "displayName")];
+							
+							if ( [_objectsBehind select 0, _veh] call LOG_fnc_isTowable ) then {
+								['tow', _text] call LOG_fnc_renameAction;
+							}
+							else {
+								['tow', format['<t color="#FF0000">%1</t>', _text]] call LOG_fnc_renameAction;
+							};
 							LOG_action_towVehicle = _objectsBehind select 0;
 						};
 					}};
