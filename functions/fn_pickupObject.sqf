@@ -15,3 +15,4 @@ LOG_pos_centerFromPlayer = 0;
 LOG_pos_direction = 0;
 
 [] call LOG_fnc_positionHeldObject;
+[] call LOG_fnc_safeWeapon;

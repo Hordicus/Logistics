@@ -24,6 +24,7 @@ class LOG {
 		class isMoveable{};
 		class roomUsed{};
 		class hasRoom{};
+		class safeWeapon{};
 		
 		class config {
 			file = "logistics\log_config.sqf";
