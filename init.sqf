@@ -15,6 +15,8 @@ LOG_showingContentsOf = objNull;
 LOG_PVAR_UNLOADITEM_RES = objNull;
 LOG_PVAR_SETVELOCITY = objNull;
 
+LOG_eventHandlers = [];
+
 [] call LOG_fnc_resetActionConditions;
 
 "LOG_PVAR_SETVELOCITY" addPublicVariableEventHandler {
@@ -39,6 +41,7 @@ while {true} do {
 	LOG_action_towVehicle = objNull;
 	LOG_action_isDriver = (vehicle player) != player && driver vehicle player == player;
 	LOG_action_showContents = objNull;
+	
 	_veh = vehicle player;
 	
 	if ( _veh == player ) then {

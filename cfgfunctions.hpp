@@ -27,6 +27,9 @@ class LOG {
 		class safeWeapon{};
 		class matchterrain{};
 		class polar2vect{};
+		class addEventHandler{};
+		class removeEventHandler{};
+		class triggerEvent{};
 		
 		class config {
 			file = "logistics\log_config.sqf";

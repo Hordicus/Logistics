@@ -31,4 +31,8 @@ if ( count _objCfg > 0 && { _objCfg select CONFIG_INDEX_WEIGHT >= 0 }) then {
 	};
 };
 
+if ( _result ) then {
+	_result = ['beforeTow', [_object, _veh]] call LOG_fnc_triggerEvent;
+};
+
 _result
