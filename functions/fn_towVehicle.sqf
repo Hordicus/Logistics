@@ -35,9 +35,9 @@ else {
 	_towableCenterOfmass = getCenterOfMass _towableObject;
 	
 	_towableObject attachTo [_veh, [
-		(_vehCenterOfMass select 0) - (_towableCenterOfmass select 0),
+		0,
 		(_vehCenterOfMass select 1) - (_towableCenterOfmass select 1),
-		-((_vehSize select 2)/2 + 1)
+		-((_vehSize select 2)/2 + 2)
 	]];
 };
 
