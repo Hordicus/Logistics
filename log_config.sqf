@@ -1,5 +1,17 @@
 private ['_config', '_class', '_result', '_classes'];
 _config = [
+	// Moving backwards and forwards
+	["maxDistanceFromPlayer", 5],
+	["minDistanceFromPlayer", 1],
+
+	// Moving up and down
+	["maxOffsetHeight", 1],
+	["minOffsetHeight", -1],
+
+	// Moving left and right
+	["maxCenterFromPlayer", 1],
+	["minCenterFromPlayer", -1],
+
 	// [class, capacity, size, weight, max towing capacity]
 	["MRAP_01_base_F",         50,	-1,		5000,	5000],
 	["B_Heli_Transport_01_F",  20,	-1,		12000,	8000],

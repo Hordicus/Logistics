@@ -1,14 +1,14 @@
 LOG_currentObject = objNull;
 LOG_keyBindID = -1;
 
-LOG_pos_maxDistanceFromPlayer = 5;
-LOG_pos_minDistanceFromPlayer = 1;
+LOG_pos_maxDistanceFromPlayer = ("maxDistanceFromPlayer" call LOG_fnc_config) select 1;
+LOG_pos_minDistanceFromPlayer = ("minDistanceFromPlayer" call LOG_fnc_config) select 1;
 
-LOG_pos_maxOffsetHeight = 1;
-LOG_pos_minOffsetHeight = -1;
+LOG_pos_maxOffsetHeight = ("maxOffsetHeight" call LOG_fnc_config) select 1;
+LOG_pos_minOffsetHeight = ("minOffsetHeight" call LOG_fnc_config) select 1;
 
-LOG_pos_maxCenterFromPlayer = 1;
-LOG_pos_minCenterFromPlayer = -1;
+LOG_pos_maxCenterFromPlayer = ("maxCenterFromPlayer" call LOG_fnc_config) select 1;
+LOG_pos_minCenterFromPlayer = ("minCenterFromPlayer" call LOG_fnc_config) select 1;
 
 LOG_showingContentsOf = objNull;
 
