@@ -57,7 +57,7 @@ while { LOG_currentObject in _intersects } do {
 		(_bbCenter select 2)
 	]];
 
-	LOG_currentObject setDir _direction;
+	LOG_currentObject setVectorDirAndUp [[1, _direction] call LOG_fnc_polar2vect, vectorUp LOG_currentObject];
 
 	_playerPos = getPosATL player;
 	_intersects = lineIntersectsWith [ATLtoASL _playerPos, ATLtoASL [_playerPos select 0, _playerPos select 1, (_playerPos select 2)-_maxHeight]];

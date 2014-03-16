@@ -116,6 +116,33 @@ _actions set [count _actions, [
 ]];
 
 _actions set [count _actions, [
+	"match_terrain",
+	"Match terrain angle",
+	{
+		LOG_action_matchTerrain = true;
+		["matchTerrain", "onEachFrame", {
+			[LOG_currentObject] call LOG_fnc_matchTerrain;
+		}] call BIS_fnc_addStackedEventHandler;
+	},
+	_basePriority,
+	false,
+	"!isNull LOG_currentObject && LOG_action_showPosOptions && !LOG_action_matchTerrain"
+]];
+
+_actions set [count _actions, [
+	"match_terrain_stop",
+	"Stop Match terrain angle",
+	{
+		LOG_action_matchTerrain = false;
+		["matchTerrain", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
+		LOG_currentObject setVectorUp [0,0,1];
+	},
+	_basePriority,
+	false,
+	"!isNull LOG_currentObject && LOG_action_showPosOptions && LOG_action_matchTerrain"
+]];
+
+_actions set [count _actions, [
 	"pos_forward",
 	"Move forward 0.5m",
 	{ [LOG_pos_distanceFromPlayer + 0.5 ] call LOG_fnc_positionHeldObject },

@@ -25,6 +25,8 @@ class LOG {
 		class roomUsed{};
 		class hasRoom{};
 		class safeWeapon{};
+		class matchterrain{};
+		class polar2vect{};
 		
 		class config {
 			file = "logistics\log_config.sqf";
