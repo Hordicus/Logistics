@@ -34,14 +34,14 @@ if ( isServer ) then {
 if ( isDedicated ) exitwith{};
 
 player call LOG_fnc_addPlayerActions;
+
+_setVars = [];
+
 while {true} do {
 	_cursorTarget = cursorTarget;
-	LOG_cursorTarget_moveable = objNull;
-	LOG_action_liftVehicle = objNull;
-	LOG_action_towVehicle = objNull;
+	_setVars = [];
 	LOG_action_isDriver = (vehicle player) != player && driver vehicle player == player;
-	LOG_action_showContents = objNull;
-	
+
 	_veh = vehicle player;
 	
 	if ( _veh == player ) then {
@@ -52,10 +52,12 @@ while {true} do {
 		) then {
 			if ( _cursorTarget call LOG_fnc_isMoveable ) then {
 				LOG_cursorTarget_moveable = _cursorTarget;
+				_setVars set [count _setVars, "LOG_cursorTarget_moveable"];
 			};
 			
 			if ( ((typeOf _cursorTarget) call LOG_fnc_containerSize) > 0 ) then {
 				LOG_action_showContents = _cursorTarget;
+				_setVars set [count _setVars, "LOG_action_showContents"];
 				_containerName = getText (configFile >> "CfgVehicles" >> typeOf _cursorTarget >> "displayName");
 				['show_contents', format['Show %1 Contents', _containerName]] call LOG_fnc_renameAction;
 
@@ -96,6 +98,7 @@ while {true} do {
 								['lift', format['<t color="#FF0000">%1</t>', _text]] call LOG_fnc_renameAction;
 							};
 							LOG_action_liftVehicle = _objectsBelow select 0;
+							_setVars set [count _setVars, "LOG_action_liftVehicle"];
 						};
 					}
 					else { if ( _veh isKindOf "Car" ) then {
@@ -116,6 +119,7 @@ while {true} do {
 								['tow', format['<t color="#FF0000">%1</t>', _text]] call LOG_fnc_renameAction;
 							};
 							LOG_action_towVehicle = _objectsBehind select 0;
+							_setVars set [count _setVars, "LOG_action_towVehicle"];							
 						};
 					}};
 				};
@@ -132,6 +136,26 @@ while {true} do {
 				};
 			};
 		};
+	};
+	
+	
+	// Reset action vars to default values if
+	// they weren't set. Keeps things from flashing on/off in
+	// the action menu.
+	if !( "LOG_cursorTarget_moveable" in _setVars ) then {
+		LOG_cursorTarget_moveable = objNull;
+	};
+	
+	if !( "LOG_action_liftVehicle" in _setVars ) then {
+		LOG_action_liftVehicle = objNull;
+	};
+	
+	if !( "LOG_action_towVehicle" in _setVars ) then {
+		LOG_action_towVehicle = objNull;
+	};
+	
+	if !( "LOG_action_showContents" in _setVars ) then {
+		LOG_action_showContents = objNull;
 	};
 
 	sleep 0.1;
