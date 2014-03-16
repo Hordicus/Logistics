@@ -53,15 +53,25 @@ while { LOG_currentObject in _intersects } do {
 		_centerFromPlayer,
 		// (_distanceFromPlayer + (abs(_corner select 0) max abs(_corner select 1))),
 		_distanceFromPlayer + abs(_corner select 1) + _adjustDist,
-		_offsetHeight + (_bbCenter select 2)
+		// _offsetHeight + (_bbCenter select 2)
+		(_bbCenter select 2)
 	]];
 
 	LOG_currentObject setDir _direction;
 
 	_playerPos = getPosATL player;
-	_intersects = lineIntersectsWith [ATLtoASL [_playerPos select 0, _playerPos select 1, 0], ATLtoASL [_playerPos select 0, _playerPos select 1, _maxHeight]];
+	_intersects = lineIntersectsWith [ATLtoASL _playerPos, ATLtoASL [_playerPos select 0, _playerPos select 1, (_playerPos select 2)-_maxHeight]];
 
 	_adjustDist = _adjustDist + 1;
 };
+
+// Final positioning
+LOG_currentObject attachTo [player, [
+	_centerFromPlayer,
+	// (_distanceFromPlayer + (abs(_corner select 0) max abs(_corner select 1))),
+	_distanceFromPlayer + abs(_corner select 1) + _adjustDist-1,
+	_offsetHeight + (_bbCenter select 2)
+]];
+
 
 LOG_currentObject
