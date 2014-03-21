@@ -30,6 +30,7 @@ class LOG {
 		class addEventHandler{};
 		class removeEventHandler{};
 		class triggerEvent{};
+		class objectSize{};
 		
 		class config {
 			file = "logistics\log_config.sqf";
