@@ -33,10 +33,17 @@ if ( isServer ) then {
 
 if ( isDedicated ) exitwith{};
 
+[] spawn {
+waitUntil {!isNull player && player == player};
+waitUntil{!isNil "BIS_fnc_init"};
+waitUntil {!(isNull (findDisplay 46))};
+
 player call LOG_fnc_addPlayerActions;
-
+player addEventHandler ['respawn', {
+	[] call LOG_fnc_resetActionConditions;
+	player call LOG_fnc_addPlayerActions;
+}];
 _setVars = [];
-
 while {true} do {
 	_cursorTarget = cursorTarget;
 	_setVars = [];
@@ -159,4 +166,5 @@ while {true} do {
 	};
 
 	sleep 0.1;
+};
 };

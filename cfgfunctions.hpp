@@ -1,5 +1,10 @@
 class LOG {
 	class functions {
+		class init {
+			file = "logistics\init.sqf";
+			postInit = 1;
+		};
+	
 		file = "logistics\functions";
 		class getCorner{};
 		class objectDemensions{};
