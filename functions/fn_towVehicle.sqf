@@ -12,8 +12,7 @@ _veh           = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 _towableObject = [_this, 1, objNull, [objNull]] call BIS_fnc_param;
 _behind        = [_this, 2, true, [true]] call BIS_fnc_param;
 
-_vehSize = _veh call LOG_fnc_objectSize;
-_towableSize = _towableObject call LOG_fnc_objectSize;
+_vehDim = _veh call LOG_fnc_objectDemensions;
 
 _bb = boundingBoxReal _veh;
 _bbCenter = boundingCenter _veh;
@@ -37,7 +36,7 @@ else {
 	_towableObject attachTo [_veh, [
 		0,
 		(_vehCenterOfMass select 1) - (_towableCenterOfmass select 1),
-		-((_vehSize select 2)/2 + 2)
+		-((_vehDim select 2)/2 + 2)
 	]];
 };
 

@@ -102,10 +102,10 @@ while {true} do {
 						};
 					}
 					else { if ( _veh isKindOf "Car" ) then {
-						_vehSize = _veh call LOG_fnc_objectSize;
+						_vehDim = _veh call LOG_fnc_objectDemensions;
 						_vehPos = getPosATL _veh;
 						_vehPos set [2, 1];
-						_vehPosBehind = [_vehPos, 2 + ((_vehSize select 1)/2), (getDir vehicle player)-180] call BIS_fnc_relPos;
+						_vehPosBehind = [_vehPos, 2 + ((_vehDim select 1)/2), (getDir vehicle player)-180] call BIS_fnc_relPos;
 						
 						_objectsBehind = (lineIntersectsWith [ATLtoASL _vehPos, ATLtoASL _vehPosBehind]) - [_veh] - allUnits;
 						
