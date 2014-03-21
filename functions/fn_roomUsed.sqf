@@ -26,16 +26,21 @@ else {
 	if ( !isNil "_x" ) then {
 		private ['_cfg'];
 		_cfg = [];
+		_numberOfItems = 1;
 		
 		if ( typeName _x == "ARRAY" ) then {
 			_cfg = (_x select 0) call LOG_fnc_config;
+			
+			if ( count _x == 2 ) then {
+				_numberOfItems = _x select 1;
+			};
 		}
 		else {
 			_cfg = (typeOf _x) call LOG_fnc_config;
 		};
 
 		if ( count _cfg > 0 ) then {
-			_count = _count + (_cfg select CONFIG_INDEX_SIZE);
+			_count = _count + (_cfg select CONFIG_INDEX_SIZE) * _numberOfItems;
 		};
 	};
 } forEach _contents;
