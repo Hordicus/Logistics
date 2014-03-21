@@ -31,7 +31,7 @@ if ( typeName _objects != "ARRAY" ) then {
 		_index = -1;
 		
 		{
-			if ( typeName _x == "ARRAY" && { count _x == 2 } ) exitwith {
+			if ( typeName _x == "ARRAY" && { count _x == 2 && (_x select 0) == _object } ) exitwith {
 				_index = _forEachIndex;
 			};
 		} forEach _contents;
