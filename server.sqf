@@ -28,7 +28,7 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 			if ( typeName _x == "ARRAY" ) then {
 				if ( _x select 0 == _item ) then {
 					if ( count _x == 2 ) then {
-						_obj = createVehicle [_x select 0, [0,0,0], [], 0, "CAN_COLLIDE"];
+						_obj = [_x select 0, [0,0,0]] call (('createVehicle' call LOG_fnc_config) select 1);
 						
 						if ( (_x select 1) == 1 ) then {
 							_contents set [_forEachIndex, nil];
@@ -38,7 +38,7 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 						};
 					}
 					else {
-						_obj = createVehicle [_x select 0, [0,0,0], [], 0, "CAN_COLLIDE"];
+						_obj = [_x select 0, [0,0,0]] call (('createVehicle' call LOG_fnc_config) select 1);
 						_obj setDamage (_x select 1);
 						
 						clearMagazineCargoGlobal _obj;
