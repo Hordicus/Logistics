@@ -70,4 +70,5 @@ if ( typeName _objects != "ARRAY" ) then {
 	}};
 } forEach _objects;
 
+['objectLoadedIn', [_container, _contents]] call LOG_fnc_triggerEvent;
 _container setVariable ['LOG_contents', _contents, true];
