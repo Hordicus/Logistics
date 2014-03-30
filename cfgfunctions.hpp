@@ -38,7 +38,7 @@ class LOG {
 		class objectSize{};
 		
 		class config {
-			file = "logistics\log_config.sqf";
+			file = "log_config.sqf";
 		};
 	};
 };
