@@ -56,7 +56,7 @@ if ( typeName _objects != "ARRAY" ) then {
 			];
 			
 			_contents set [count _contents, _info];
-			deleteVehicle _object;
+			[_object] call (('deleteVehicle' call LOG_fnc_config) select 1);
 		}
 		else {
 			_contents set [count _contents, _object];

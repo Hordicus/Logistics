@@ -12,8 +12,9 @@ _config = [
 	["maxCenterFromPlayer", 1],
 	["minCenterFromPlayer", -1],
 	
-	// Change if you need to handle the creating of objects on server in a special way
+	// Change if you need to handle the creation/deletion of objects a special way
 	["createVehicle", { createVehicle [_this select 0, _this select 1, [], 0, "CAN_COLLIDE"]; }],
+	["deleteVehicle", { deleteVehicle (_this select 0); }],
 
 	// [class, capacity, size, weight, max towing capacity]
 	["MRAP_01_base_F",         50,	-1,		5000,	5000],
