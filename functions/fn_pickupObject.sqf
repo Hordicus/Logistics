@@ -16,3 +16,12 @@ LOG_pos_direction = 0;
 
 [] call LOG_fnc_positionHeldObject;
 [] call LOG_fnc_safeWeapon;
+[] spawn {
+	while { !isNull LOG_currentObject } do {
+		if ( vehicle player != player ) then {
+			[] call LOG_fnc_releaseObject;
+		};
+		
+		sleep 0.5;
+	};
+};
