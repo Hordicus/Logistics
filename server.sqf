@@ -93,3 +93,7 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 		_client publicVariableClient "LOG_PVAR_SETVELOCITY";
 	};
 };
+
+"LOG_PVAR_SETVECTORDIRANDUP" addPublicVariableEventHandler {
+	(_this select 1 select 0) setVectorDirAndUp (_this select 1 select 1);
+};

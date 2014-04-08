@@ -58,6 +58,8 @@ while { LOG_currentObject in _intersects } do {
 	]];
 
 	LOG_currentObject setVectorDirAndUp [[1, _direction] call LOG_fnc_polar2vect, vectorUp LOG_currentObject];
+	LOG_PVAR_SETVECTORDIRANDUP = [LOG_currentObject, [[1, _direction] call LOG_fnc_polar2vect, vectorUp LOG_currentObject]];
+	publicVariableServer "LOG_PVAR_SETVECTORDIRANDUP";
 
 	_playerPos = getPosATL player;
 	_intersects = lineIntersectsWith [ATLtoASL _playerPos, ATLtoASL [_playerPos select 0, _playerPos select 1, (_playerPos select 2)-_maxHeight]];
