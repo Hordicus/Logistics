@@ -43,6 +43,12 @@ player addEventHandler ['respawn', {
 	[] call LOG_fnc_resetActionConditions;
 	player call LOG_fnc_addPlayerActions;
 }];
+
+player addEventHandler ['killed', {
+	if ( !isNull LOG_currentObject ) then {
+		[] call LOG_fnc_releaseObject;
+	};
+}];
 _setVars = [];
 while {true} do {
 	_cursorTarget = cursorTarget;
