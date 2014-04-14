@@ -7,7 +7,7 @@ LOG_PVAR_UNLOADITEM = [player, _container, _item];
 publicVariableServer "LOG_PVAR_UNLOADITEM";
 
 [] spawn {
+	LOG_PVAR_UNLOADITEM_RES = objNull;
 	waituntil { !isNull LOG_PVAR_UNLOADITEM_RES };
 	LOG_PVAR_UNLOADITEM_RES call LOG_fnc_pickupObject;
-	LOG_PVAR_UNLOADITEM_RES = objNull;
 };
