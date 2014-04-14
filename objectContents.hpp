@@ -92,6 +92,7 @@ class objectContents {
 			h = safezoneH * 0.03;
 			x = safezoneX + safezoneW * (0.5 - 0.4/2);
 			y = safezoneY + safezoneH * (0.5 - 0.3/2 - 0.005 - 0.03);
+			idc = LOG_OCtitle_idc;
 		};
 		
 		class OCbackground : LOG_common {
