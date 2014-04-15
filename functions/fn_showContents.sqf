@@ -54,6 +54,6 @@ ctrlSetText [LOG_OCtitle_idc, format['%1 Contents', getText (configFile >> "CfgV
 	_itemName = getText ( configFile >> "CfgVehicles" >> (_x select 0) >> "displayName" );
 	_count = _x select 1;
 	
-	_row = lnbAddRow [LOG_OCcontents_idc, ["", _itemName, str _count]];
-	lnBSetData [LOG_OCcontents_idc, [_row, 1], _x select 0];
+	_row = lnbAddRow [LOG_OCcontents_idc, [_itemName, str _count]];
+	lnBSetData [LOG_OCcontents_idc, [_row, 0], _x select 0];
 } forEach _rows;
