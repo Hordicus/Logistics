@@ -1,3 +1,4 @@
+if ( !isServer ) exitwith{};
 LOG_PVAR_UNLOADITEM = objNull;
 LOG_PVAR_SETVELOCITY_SERVER = objNull;
 

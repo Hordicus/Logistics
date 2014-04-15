@@ -1,3 +1,5 @@
+if ( !hasInterface ) exitwith{};
+
 LOG_currentObject = objNull;
 LOG_keyBindID = -1;
 
@@ -26,12 +28,6 @@ LOG_eventHandlers = [];
 	
 	_veh setVelocity _velocity;
 };
-
-if ( isServer ) then {
-	execVM "logistics\server.sqf";
-};
-
-if ( isDedicated ) exitwith{};
 
 [] spawn {
 waitUntil {!isNull player && player == player};

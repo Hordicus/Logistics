@@ -4,6 +4,10 @@ class LOG {
 			file = "logistics\init.sqf";
 			postInit = 1;
 		};
+		class serverInit {
+			file = "logistics\server.sqf";
+			preInit = 1;
+		};
 	
 		file = "logistics\functions";
 		class getCorner{};
