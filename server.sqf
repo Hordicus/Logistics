@@ -32,7 +32,8 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 						_obj = [_x select 0, [0,0,0]] call (('createVehicle' call LOG_fnc_config) select 1);
 						
 						if ( (_x select 1) == 1 ) then {
-							_contents set [_forEachIndex, nil];
+							_contents set [_forEachIndex, "REMOVE"];
+							_contents = _contents - ["REMOVE"];
 						}
 						else {
 							(_contents select _forEachIndex) set [1, (_contents select _forEachIndex select 1)-1];
@@ -62,7 +63,8 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 							_obj addItemCargoGlobal [_items select 0 select _i, _items select 1 select _i];
 						};
 						
-						_contents set [_forEachIndex, nil];
+						_contents set [_forEachIndex, "REMOVE"];
+						_contents = _contents - ["REMOVE"];
 					};
 				};
 			}
