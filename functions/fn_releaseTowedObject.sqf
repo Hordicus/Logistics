@@ -25,5 +25,6 @@ else {
 
 _veh setVariable ['LOG_towedObject', nil, true];
 _towedObject setVariable ['LOG_towedTo', nil, true];
+['releasedVehicle', [_veh, _towedObject]] call LOG_fnc_triggerEvent;
 
 _towedObject

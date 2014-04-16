@@ -46,3 +46,6 @@ if ( (_towableObjectCorner select 0) > (_towableObjectCorner select 1) ) then {
 
 _veh setVariable ['LOG_towedObject', _towableObject, true];
 _towableObject setVariable ['LOG_towedTo', _veh, true];
+['towedVehicle', [_veh, _towableObject]] call LOG_fnc_triggerEvent;
+
+_veh
