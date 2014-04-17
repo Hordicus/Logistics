@@ -92,7 +92,7 @@ while {true} do {
 				// Is driver and not towing a vehicle, look for vehicles to tow/lift
 				_vehConfig = (typeOf _veh) call LOG_fnc_config;
 				if ( count _vehConfig > 0 && isNull (_veh getVariable ['LOG_towedTo', objNull]) ) then {
-					if ( _veh isKindOf "Helicopter" ) then {
+					if ( _veh isKindOf "Air" ) then {
 						_vehPos = _veh modelToWorld (getCenterOfMass _veh);
 						_vehPosLess10 = [_vehPos select 0, _vehPos select 1, (_vehPos select 2)-10];
 						_objectsBelow = (lineIntersectsWith [ATLtoASL _vehPos, ATLtoASL _vehPosLess10, objNull, objNull, true]) - [_veh] - allUnits;
@@ -110,7 +110,7 @@ while {true} do {
 							};
 						};
 					}
-					else { if ( _veh isKindOf "Car" ) then {
+					else { if ( _veh isKindOf "LandVehicle" ) then {
 						_vehDim = _veh call LOG_fnc_objectDemensions;
 						_vehPos = getPosATL _veh;
 						_vehPos set [2, 1];
