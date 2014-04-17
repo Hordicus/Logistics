@@ -7,27 +7,48 @@
 	_towableObject - Object to be towed
 	
 */
-
+private ["_veh","_towableObject","_behind","_vehDim","_towDim","_bb","_bbCenter","_towableObjectCorner","_intersects","_position","_offset","_worldPos","_vehPos","_vehPosBehind","_vehCenterOfMass","_towableCenterOfmass"];
 _veh           = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 _towableObject = [_this, 1, objNull, [objNull]] call BIS_fnc_param;
 _behind        = [_this, 2, true, [true]] call BIS_fnc_param;
 
+detach _towableObject;
+
 _vehDim = _veh call LOG_fnc_objectDemensions;
+_towDim = _towableObject call LOG_fnc_objectDemensions;
 
 _bb = boundingBoxReal _veh;
 _bbCenter = boundingCenter _veh;
 
 
-_corner = [_bbCenter select 0, _bbCenter select 1, _bb select 1 select 0, _bb select 1 select 1, 0] call LOG_fnc_getCorner;
 _towableObjectCorner = [_towableObject, 0] call LOG_fnc_getObjectCorner;
-_towableObjectCenter = boundingCenter _towableObject;
 
 if ( _behind ) then {
-	_towableObject attachTo [_veh, [
-		0,
-		-((abs(_corner select 1) + 0.5) + (abs(_towableObjectCorner select 0))),
-		-((_bbCenter select 2) - (_towableObjectCenter select 2))
-	]];
+	_intersects = [];
+	_position = [];
+	_offset = 0;
+	
+	while { !(_towableObject in _intersects) } do {
+		_position = [
+			0,
+			-((_vehDim select 1)/2 + (_towDim select 1)/2 - _offset),
+			-((_vehDim select 2)/2 - (_towDim select 2)/2)
+		];
+		
+		_worldPos = (_veh modelToWorld _position);
+		_worldPos set [2, 0];
+		_towableObject setPosATL _worldPos;
+		_towableObject setDir getDir _veh;
+		
+		_vehPos = getPosATL _veh;
+		_vehPos set [2, 1];
+		_vehPosBehind = [_vehPos, 1 + ((_vehDim select 1)/2), (getDir _veh)-180] call BIS_fnc_relPos;
+
+		_intersects = lineIntersectsWith[ATLtoASL _vehPos, ATLtoASL _vehPosBehind, _veh];
+		_offset = _offset + 0.5;
+	};
+
+	_towableObject attachTo [_veh, _position];
 }
 else {
 	_vehCenterOfMass = getCenterOfMass _veh;
