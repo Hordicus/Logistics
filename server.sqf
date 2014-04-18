@@ -1,6 +1,5 @@
 if ( !isServer ) exitwith{};
 [] spawn {
-waitUntil {!isNil "BIS_fnc_init"};
 
 LOG_PVAR_UNLOADITEM = objNull;
 LOG_PVAR_SETVELOCITY_SERVER = objNull;
