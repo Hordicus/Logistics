@@ -215,22 +215,6 @@ _actions set [count _actions, [
 ]];
 
 _actions set [count _actions, [
-	"lift",
-	"Lift Vehicle",
-	{
-		if ( [LOG_action_liftVehicle, vehicle player] call LOG_fnc_isTowable ) then {
-			[vehicle player, LOG_action_liftVehicle, false] call LOG_fnc_towVehicle;
-		}
-		else {
-			hint "You can't lift that with this helicopter";
-		};
-	},
-	_basePriority,
-	true,
-	"!isNull LOG_action_liftVehicle"
-]];
-
-_actions set [count _actions, [
 	"release",
 	"Release Vehicle",
 	{ [vehicle player] call LOG_fnc_releaseTowedObject },
@@ -243,11 +227,31 @@ _actions set [count _actions, [
 	"tow",
 	"Tow Vehicle",
 	{
-		if ( [LOG_action_towVehicle, vehicle player] call LOG_fnc_isTowable ) then {
-			[vehicle player, LOG_action_towVehicle, true] call LOG_fnc_towVehicle;
+		_error = [] call {
+			if !(isNull (LOG_action_towVehicle getVariable ['LOG_towedObject', objNull])) exitwith {
+				"That vehicle is towing an object"
+			};
+			
+			if !(isNull ((vehicle player) getVariable ['LOG_towedTo', objNull])) exitwith {
+				"You can't tow a vehicle while you are being towed"
+			};
+			
+			if !(isNull (LOG_action_towVehicle getVariable ['LOG_towedTo', objNull])) exitwith {
+				"That vehicle is already being towed"
+			};
+
+			if !([LOG_action_towVehicle, vehicle player] call LOG_fnc_isTowable) exitwith {
+				"You can't tow that with this vehicle"
+			};
+			
+			""
+		};
+		
+		if ( _error == "" ) then {
+			[vehicle player, LOG_action_towVehicle, !((vehicle player) isKindOf 'Air')] call LOG_fnc_towVehicle;
 		}
 		else {
-			hint "You can't tow that with this vehicle";
+			hint _error;
 		};
 	},
 	_basePriority,
