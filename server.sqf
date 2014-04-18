@@ -1,4 +1,7 @@
 if ( !isServer ) exitwith{};
+[] spawn {
+waitUntil {!isNil "BIS_fnc_init"};
+
 LOG_PVAR_UNLOADITEM = objNull;
 LOG_PVAR_SETVELOCITY_SERVER = objNull;
 
@@ -99,4 +102,5 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 
 "LOG_PVAR_SETVECTORDIRANDUP" addPublicVariableEventHandler {
 	(_this select 1 select 0) setVectorDirAndUp (_this select 1 select 1);
+};
 };
