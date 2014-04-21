@@ -32,7 +32,12 @@ else {
 			_cfg = (_x select 0) call LOG_fnc_config;
 			
 			if ( count _x == 2 ) then {
-				_numberOfItems = _x select 1;
+				if ( typeName (_x select 1) == "STRING" ) then {
+					_numberOfItems = parseNumber (_x select 1);
+				}
+				else {
+					_numberOfItems = _x select 1;
+				};
 			};
 		}
 		else {

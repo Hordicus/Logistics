@@ -40,6 +40,10 @@ ctrlSetText [LOG_OCtitle_idc, format['%1 Contents', getText (configFile >> "CfgV
 		
 		_index = _types find _type;
 		
+		if ( typeName _count == "STRING" ) then {
+			_count = parseNumber _count;
+		};
+		
 		if ( _index > -1 ) then {
 			(_rows select _index) set [1, ((_rows select _index) select 1)+_count];
 		}
