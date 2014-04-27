@@ -42,6 +42,7 @@ class LOG {
 		class objectSize{};
 		class createObjectCam{};
 		class destroyObjectCam{};
+		class itemName{};
 		
 		class config {
 			file = "log_config.sqf";

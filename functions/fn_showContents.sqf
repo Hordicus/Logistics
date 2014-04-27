@@ -57,7 +57,7 @@ ctrlShow [LOG_OCpreview_idc, false];
 } forEach _contents;
 
 {
-	_itemName = getText ( configFile >> "CfgVehicles" >> (_x select 0) >> "displayName" );
+	_itemName = [_x select 0] call LOG_fnc_itemName;
 	_count = _x select 1;
 	
 	_row = lnbAddRow [LOG_OCcontents_idc, [_itemName, str _count]];

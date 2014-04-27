@@ -3,6 +3,7 @@
 #define CONFIG_INDEX_SIZE 2
 #define CONFIG_INDEX_WEIGHT 3
 #define CONFIG_INDEX_TOWINGCAPACITY 4
+#define CONFIG_INDEX_OVERRIDENAME 5
 
 #define objectContentsIDD 4000
 #define LOG_OCcontents_idc 4001
