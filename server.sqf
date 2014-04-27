@@ -1,3 +1,5 @@
+#define ASNUMBER(NUMBER) (if(typeName (NUMBER) != "SCALAR") then {parseNumber (NUMBER)} else {NUMBER})
+
 if ( !isServer ) exitwith{};
 [] spawn {
 
@@ -32,23 +34,18 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 				if ( _x select 0 == _item ) then {
 					if ( count _x == 2 ) then {
 						_obj = [_x select 0, [0,0,0]] call (('createVehicle' call LOG_fnc_config) select 1);
-						
-						_count = _x select 1;
-						if ( typeName _count == "STRING" ) then {
-							_count = parseNumber _count;
-						};
-						
+
 						if ( _count == 1 ) then {
 							_contents set [_forEachIndex, "REMOVE"];
 							_contents = _contents - ["REMOVE"];
 						}
 						else {
-							(_contents select _forEachIndex) set [1, _count-1];
+							(_contents select _forEachIndex) set [1, ASNUMBER(_x select 1)-1];
 						};
 					}
 					else {
 						_obj = [_x select 0, [0,0,0]] call (('createVehicle' call LOG_fnc_config) select 1);
-						_obj setDamage (_x select 1);
+						_obj setDamage ASNUMBER(_x select 1);
 						
 						clearMagazineCargoGlobal _obj;
 						clearWeaponCargoGlobal _obj;
@@ -59,15 +56,15 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 						_items = _x select 4;
 						
 						for "_i" from 0 to (count (_mags select 0)) do {
-							_obj addMagazineCargoGlobal [_mags select 0 select _i, _mags select 1 select _i];
+							_obj addMagazineCargoGlobal [_mags select 0 select _i, ASNUMBER(_mags select 1 select _i)];
 						};
 						
 						for "_i" from 0 to (count (_weapons select 0)) do {
-							_obj addWeaponCargoGlobal [_weapons select 0 select _i, _weapons select 1 select _i];
+							_obj addWeaponCargoGlobal [_weapons select 0 select _i, ASNUMBER(_weapons select 1 select _i)];
 						};
 						
 						for "_i" from 0 to (count (_items select 0)) do {
-							_obj addItemCargoGlobal [_items select 0 select _i, _items select 1 select _i];
+							_obj addItemCargoGlobal [_items select 0 select _i, ASNUMBER(_items select 1 select _i)];
 						};
 						
 						_contents set [_forEachIndex, "REMOVE"];
