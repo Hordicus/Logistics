@@ -24,31 +24,11 @@ _bbCenter = boundingCenter _veh;
 _towableObjectCorner = [_towableObject, 0] call LOG_fnc_getObjectCorner;
 
 if ( _behind ) then {
-	_intersects = [];
-	_position = [];
-	_offset = 0;
-	
-	while { !(_towableObject in _intersects) } do {
-		_position = [
-			0,
-			-((_vehDim select 1)/2 + (_towDim select 1)/2 - _offset),
-			-((_vehDim select 2)/2 - (_towDim select 2)/2)
-		];
-		
-		_worldPos = (_veh modelToWorld _position);
-		_worldPos set [2, 0];
-		_towableObject setPosATL _worldPos;
-		_towableObject setDir getDir _veh;
-		
-		_vehPos = getPosATL _veh;
-		_vehPos set [2, 1];
-		_vehPosBehind = [_vehPos, 1 + ((_vehDim select 1)/2), (getDir _veh)-180] call BIS_fnc_relPos;
-
-		_intersects = lineIntersectsWith[ATLtoASL _vehPos, ATLtoASL _vehPosBehind, _veh];
-		_offset = _offset + 0.5;
-	};
-
-	_towableObject attachTo [_veh, _position];
+	_towableObject attachTo [_veh, [
+		0,
+		-((_vehDim select 1)/2 + (_towDim select 1)/2 - _offset),
+		-((_vehDim select 2)/2 - (_towDim select 2)/2)
+	]];
 }
 else {
 	_vehCenterOfMass = getCenterOfMass _veh;
