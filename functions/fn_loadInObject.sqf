@@ -55,6 +55,7 @@ if ( typeName _objects != "ARRAY" ) then {
 				getItemCargo _object
 			];
 			
+			[] call LOG_fnc_releaseObject;
 			_contents set [count _contents, _info];
 			[_object] call (('deleteVehicle' call LOG_fnc_config) select 1);
 		}
