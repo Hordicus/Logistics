@@ -7,7 +7,7 @@
 	_towableObject - Object to be towed
 	
 */
-private ["_veh","_towableObject","_behind","_vehDim","_towDim","_bb","_bbCenter","_towableObjectCorner","_intersects","_position","_offset","_worldPos","_vehPos","_vehPosBehind","_vehCenterOfMass","_towableCenterOfmass"];
+private ["_veh","_towableObject","_behind","_vehDim","_towDim","_bb","_bbCenter","_towableObjectCorner","_vehCenterOfMass","_towableCenterOfmass"];
 _veh           = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 _towableObject = [_this, 1, objNull, [objNull]] call BIS_fnc_param;
 _behind        = [_this, 2, true, [true]] call BIS_fnc_param;
@@ -26,7 +26,7 @@ _towableObjectCorner = [_towableObject, 0] call LOG_fnc_getObjectCorner;
 if ( _behind ) then {
 	_towableObject attachTo [_veh, [
 		0,
-		-((_vehDim select 1)/2 + (_towDim select 1)/2 - _offset),
+		-((_vehDim select 1)/2 + (_towDim select 1)/2),
 		-((_vehDim select 2)/2 - (_towDim select 2)/2)
 	]];
 }
