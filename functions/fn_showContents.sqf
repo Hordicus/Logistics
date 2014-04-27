@@ -17,6 +17,8 @@ _maxCap = _container call LOG_fnc_containerSize;
 ctrlSetText [LOG_OCroom_idc, format['%1 / %2', _used, _maxCap]];
 ctrlSetText [LOG_OCtitle_idc, format['%1 Contents', getText (configFile >> "CfgVehicles" >> (typeOf LOG_showingContentsOf) >> "displayName")]];
 
+ctrlShow [LOG_OCpreview_idc, false];
+
 {   
 	if ( !isNil "_x" ) then {
 		_type = "";

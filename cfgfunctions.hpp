@@ -40,6 +40,8 @@ class LOG {
 		class removeEventHandler{};
 		class triggerEvent{};
 		class objectSize{};
+		class createObjectCam{};
+		class destroyObjectCam{};
 		
 		class config {
 			file = "log_config.sqf";

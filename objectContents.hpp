@@ -83,6 +83,7 @@ class objectContents {
 	enableSimulation = true;
 	
 	onLoad = "_this execVM 'logistics\event_onLoad.sqf';";
+	onDestroy = "[] call LOG_fnc_destroyObjectCam;";
 
 	class controlsBackground {
 		class OCtitle : LOG_common {
@@ -110,6 +111,15 @@ class objectContents {
 			colorBackground[] = {0,0,0,0};
 			idc = LOG_OCroom_idc;
 		};
+		
+		class OCpreview : LOG_common {
+			idc = LOG_OCpreview_idc;
+			style = ST_PICTURE;
+			w = safezoneW * 0.2;
+			h = safezoneH * 0.2;
+			x = safezoneX + safezoneW * (0.5 + 0.4/2);
+			y = safezoneY + safezoneH * (0.5 - 0.3/2);
+		};
 	};
 
 	class controls {
@@ -130,6 +140,8 @@ class objectContents {
 			x = safezoneX + safezoneW * (0.5 - 0.4/2);
 			y = safezoneY + safezoneH * (0.5 - 0.3/2);
 			columns[] = {0, 0.8};
+			
+			onLBSelChanged = "_this call compile preprocessFileLineNumbers 'logistics\event_selChanged.sqf'";
 		};
 	};
 };

@@ -8,3 +8,4 @@
 #define LOG_OCcontents_idc 4001
 #define LOG_OCroom_idc 4002
 #define LOG_OCtitle_idc 4003
+#define LOG_OCpreview_idc 4004
