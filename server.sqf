@@ -35,7 +35,7 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 					if ( count _x == 2 ) then {
 						_obj = [_x select 0, [0,0,0]] call (('createVehicle' call LOG_fnc_config) select 1);
 
-						if ( _count == 1 ) then {
+						if ( ASNUMBER(_x select 1) == 1 ) then {
 							_contents set [_forEachIndex, "REMOVE"];
 							_contents = _contents - ["REMOVE"];
 						}
