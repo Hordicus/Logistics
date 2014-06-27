@@ -33,6 +33,7 @@ class LOG {
 		class hasRoom{};
 		class safeWeapon{};
 		class matchterrain{};
+		class toggleMatchTerrain{};
 		class polar2vect{};
 		class addEventHandler{};
 		class removeEventHandler{};

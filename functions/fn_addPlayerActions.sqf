@@ -120,9 +120,7 @@ _actions set [count _actions, [
 	"Match terrain angle",
 	{
 		LOG_action_matchTerrain = true;
-		["matchTerrain", "onEachFrame", {
-			[LOG_currentObject] call LOG_fnc_matchTerrain;
-		}] call BIS_fnc_addStackedEventHandler;
+		[] call LOG_fnc_toggleMatchTerrain;
 	},
 	_basePriority,
 	false,
@@ -134,8 +132,8 @@ _actions set [count _actions, [
 	"Stop Match terrain angle",
 	{
 		LOG_action_matchTerrain = false;
-		["matchTerrain", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
 		LOG_currentObject setVectorUp [0,0,1];
+		[] call LOG_fnc_toggleMatchTerrain;
 	},
 	_basePriority,
 	false,
