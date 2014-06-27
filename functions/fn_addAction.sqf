@@ -1,6 +1,5 @@
 LOG_actions = missionNamespace getVariable ['LOG_actions', []];
 LOG_actionsIds = missionNamespace getVariable ['LOG_actionsIds', []];
-LOG_actionsVehicleIds = missionNamespace getVariable ['LOG_actionsVehicleIds', []];
 
 private ['_id'];
 _id = count LOG_actions;
@@ -39,7 +38,9 @@ LOG_actionsIds set [_id, player addAction [
 ]];
 
 if !( (vehicle player) isKindOf "Man" ) then {
-	LOG_actionsVehicleIds set [_id, (vehicle player) addAction [
+	private ['_actions'];
+	_actions = (vehicle player) getVariable ['vehicleActionIds', []];
+	_actions set [_id, (vehicle player) addAction [
 		_title,
 		"logistics\functions\fn_addActionHandler.sqf",
 		_id,
@@ -49,9 +50,8 @@ if !( (vehicle player) isKindOf "Man" ) then {
 		_shortcut,
 		_condition
 	]];
-}
-else {
-	LOG_actionsVehicleIds set [_id, -1];
+	
+	(vehicle player) setVariable ['vehicleActionIds', _actions];
 };
 
 _id

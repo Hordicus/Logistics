@@ -7,7 +7,13 @@ _action = LOG_actions select _id;
 
 if !( (_action select 0) == _text ) then {
 	player removeAction _realId;
-	(vehicle player) removeAction (LOG_actionsVehicleIds select _id);
+	
+	if ( vehicle player != player ) then {
+		private ['_actions'];
+		_actions = (vehicle player) getVariable ['vehicleActionIds', []];
+		(vehicle player) removeAction (_actions select _id);
+	};
+	
 	
 	_action set [0, _text];
 	_action set [8, _id];

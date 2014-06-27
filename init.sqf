@@ -24,7 +24,6 @@ LOG_PVAR_UNLOADITEM_RES = objNull;
 LOG_PVAR_SETVELOCITY = objNull;
 
 LOG_eventHandlers = [];
-LOG_actionsVehicleIds = [];
 
 [] call LOG_fnc_resetActionConditions;
 
@@ -64,14 +63,16 @@ player addEventHandler ['killed', {
 		
 		{
 			_veh removeAction _x;
-		} count LOG_actionsVehicleIds;
+		} count (_veh getVariable ['vehicleActionIds', []]);
 
 		_veh = vehicle player;
 		
 		if !( _veh isKindOf "Man" ) then {
 			_veh = vehicle player;
+			_actions = [];
+			
 			{
-				LOG_actionsVehicleIds set [_forEachIndex, _veh addAction [
+				_actions set [_forEachIndex, _veh addAction [
 					_x select 0,
 					"logistics\functions\fn_addActionHandler.sqf",
 					_forEachIndex,
@@ -82,6 +83,8 @@ player addEventHandler ['killed', {
 					_x select 7
 				]];
 			} forEach LOG_actions;
+			
+			_veh setVariable ['vehicleActionIds', _actions];
 		};
 		
 		waitUntil { _veh != vehicle player };
