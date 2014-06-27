@@ -46,6 +46,7 @@ player addEventHandler ['respawn', {
 	
 	{
 		_x call LOG_fnc_addAction;
+		nil
 	} count _reAdd;
 }];
 
