@@ -7,7 +7,7 @@
 	None
 */
 
-LOG_keyBindID = (findDisplay 46) displayAddEventHandler ["KeyDown", {
+LOG_keyBindID = (findDisplay 46) displayAddEventHandler ["KeyDown", "_this call " + str {
 	if ( isNull LOG_currentObject ) exitwith{};
 	_key = _this select 1;
 
@@ -42,12 +42,12 @@ LOG_keyBindID = (findDisplay 46) displayAddEventHandler ["KeyDown", {
 			true
 		};
 		
-		case (_key in actionKeys "BuldRotateSelX"): {
+		case (_key in actionKeys "HeliRudderLeft"): {
 			[nil, nil, nil, LOG_pos_direction - 45] call LOG_fnc_positionHeldObject;
 			true
 		};
 		
-		case (_key in actionKeys "BuldRotateSelZ"): {
+		case (_key in actionKeys "HeliRudderRight"): {
 			[nil, nil, nil, LOG_pos_direction + 45] call LOG_fnc_positionHeldObject;
 			true
 		};
