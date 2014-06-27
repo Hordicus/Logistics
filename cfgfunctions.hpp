@@ -38,8 +38,6 @@ class LOG {
 		class removeEventHandler{};
 		class triggerEvent{};
 		class objectSize{};
-		class createObjectCam{};
-		class destroyObjectCam{};
 		class itemName{};
 		
 		class setUserActionText{};
