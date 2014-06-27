@@ -54,10 +54,10 @@ if ( isNil "LOG_configLookup" ) then {
 		_classes set [_forEachIndex, _x select 0];
 	} forEach _config;
 	
-	LOG_configLookup = compileFinal format['private["_index", "_result", "_config"]; _config = %1; _index = %2 find _this; if ( _index > -1 ) then { _result = (_config select _index); } else { _result = []; }; _result', _config, _classes];
+	LOG_configLookup = compile format['private["_index", "_result", "_config"]; _config = %1; _index = %2 find _this; if ( _index > -1 ) then { _result = (_config select _index); } else { _result = []; }; _result', _config, _classes];
 };
 
-_class = [_this, 0, false, [""]] call BIS_fnc_param;
+_class = [_this, 0, false, [""]] call BL_fnc_param;
 
 if ( typeName _class == "STRING" ) then {
 	_result = _class call LOG_configLookup;

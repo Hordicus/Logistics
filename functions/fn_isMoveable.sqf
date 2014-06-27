@@ -12,7 +12,7 @@
 #include "macro.sqf"
 private ['_object', '_cfg', '_result', '_class'];
 
-_object = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
+_object = [_this, 0, objNull, [objNull]] call BL_fnc_param;
 _class = typeOf _object;
 
 _cfg = _class call LOG_fnc_config;

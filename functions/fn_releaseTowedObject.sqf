@@ -10,7 +10,7 @@
 */
 
 private ["_veh","_towedObject"];
-_veh = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
+_veh = [_this, 0, objNull, [objNull]] call BL_fnc_param;
 _towedObject = _veh getVariable ['LOG_towedObject', objNull];
 
 detach _towedObject;
@@ -23,8 +23,8 @@ else {
 	publicVariableServer "LOG_PVAR_SETVELOCITY_SERVER";
 };
 
-_veh setVariable ['LOG_towedObject', nil, true];
-_towedObject setVariable ['LOG_towedTo', nil, true];
+_veh setVariable ['LOG_towedObject', objNull, true];
+_towedObject setVariable ['LOG_towedTo', objNull, true];
 ['releasedVehicle', [_veh, _towedObject]] call LOG_fnc_triggerEvent;
 
 _towedObject

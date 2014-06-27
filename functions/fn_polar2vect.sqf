@@ -13,9 +13,9 @@
 */
 private ["_mag", "_dir", "_elev", "_magCosElev", "_vx", "_vy", "_vz"];
 
-_mag  = [_this, 0, 0, [0]] call BIS_fnc_param;
-_dir  = [_this, 1, 0, [0]] call BIS_fnc_param;
-_elev = [_this, 2, 0, [0]] call BIS_fnc_param;
+_mag  = [_this, 0, 0, [0]] call BL_fnc_param;
+_dir  = [_this, 1, 0, [0]] call BL_fnc_param;
+_elev = [_this, 2, 0, [0]] call BL_fnc_param;
 
 _magCosElev = _mag * cos(_elev);
 

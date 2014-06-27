@@ -1,9 +1,5 @@
 [] spawn {
-	private ['_eh'];
-	if !( weaponLowered player ) then {
-		player action ["WEAPONONBACK", player];
-	};
-	
+	private ['_eh'];	
 	_eh = player addEventHandler ['fired', {
 		// Delete bullet
 		deleteVehicle (_this select 6);
@@ -20,12 +16,6 @@
 		player action ["WEAPONONBACK", player];
 	}];
 	
-	waitUntil { isNull LOG_currentObject };
-	
-	// Raise weapon if it's lowered
-	if ( weaponLowered player ) then {
-		player action ["WEAPONONBACK", player];
-	};
-	
+	waitUntil { isNull LOG_currentObject };	
 	player removeEventHandler ['fired', _eh];
 };

@@ -1,7 +1,7 @@
 private ['_class', '_renderTarget', '_objPos', '_obj', '_objDim', '_lightPos', '_light'];
-_class  = [_this, 0, "", [""]] call BIS_fnc_param;
-_renderTarget = [_this, 1, "rendertarget45", [""]] call BIS_fnc_param;
-_objPos = [_this, 2, [10,10,10000], [[]], [3]] call BIS_fnc_param;
+_class  = [_this, 0, "", [""]] call BL_fnc_param;
+_renderTarget = [_this, 1, "rendertarget45", [""]] call BL_fnc_param;
+_objPos = [_this, 2, [10,10,10000], [[]], [3]] call BL_fnc_param;
 
 [] call LOG_fnc_destroyObjectCam;
 

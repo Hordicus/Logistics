@@ -14,7 +14,7 @@
 */
 
 private['_distance', '_cameraPosition', '_finalPosition', '_angle'];
-_distance = [_this, 0, 5, [0]] call BIS_fnc_param;
+_distance = [_this, 0, 5, [0]] call BL_fnc_param;
 
 _cameraPosition = eyePos player;
 _finalPosition = [_cameraPosition, _distance, getDir player] call BIS_fnc_relPos;

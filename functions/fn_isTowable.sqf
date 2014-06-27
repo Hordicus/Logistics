@@ -13,8 +13,8 @@
 private ["_object","_veh","_objCfg","_result","_vehCfg"];
 #include "macro.sqf"
 
-_object = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
-_veh    = [_this, 1, objNull, [objNull]] call BIS_fnc_param;
+_object = [_this, 0, objNull, [objNull]] call BL_fnc_param;
+_veh    = [_this, 1, objNull, [objNull]] call BL_fnc_param;
 
 _objCfg = (typeOf _object) call LOG_fnc_config;
 _result = false;

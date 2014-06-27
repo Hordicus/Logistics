@@ -11,7 +11,7 @@
 */
 
 private ['_player', '_basePriority', '_actions', '_ids'];
-_player = [_this, 0, player, [player]] call BIS_fnc_param;
+_player = [_this, 0, player, [player]] call BL_fnc_param;
 _basePriority = 0;
 _actions = [];
 
@@ -285,8 +285,9 @@ _actions set [count _actions, [
 ]];
 
 _ids = [];
+
 {
-	_ids set [count _ids, [_x select 0, _player addAction [
+	_ids set [count _ids, [_x select 0, [
 		_x select 1,
 		_x select 2,
 		nil,
@@ -295,9 +296,9 @@ _ids = [];
 		_x select 4,
 		"",
 		_x select 5
-	]]];
+	] call LOG_fnc_addAction]];
 } forEach _actions;
 
-LOG_actionIds = _ids;
+LOG_actionNameIds = _ids;
 
 _ids

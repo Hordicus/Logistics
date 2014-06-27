@@ -2,11 +2,9 @@ class LOG {
 	class functions {
 		class init {
 			file = "logistics\init.sqf";
-			postInit = 1;
 		};
 		class serverInit {
 			file = "logistics\server.sqf";
-			preInit = 1;
 		};
 	
 		file = "logistics\functions";
@@ -43,6 +41,10 @@ class LOG {
 		class createObjectCam{};
 		class destroyObjectCam{};
 		class itemName{};
+		
+		class setUserActionText{};
+		class addAction{};
+		class removeAction{};
 		
 		class config {
 			file = "log_config.sqf";

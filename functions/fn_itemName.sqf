@@ -1,7 +1,7 @@
 #include "macro.sqf"
 
 private ['_class', '_cfg', '_name'];
-_class = [_this, 0, "", [""]] call BIS_fnc_param;
+_class = [_this, 0, "", [""]] call BL_fnc_param;
 _name = "";
 
 _cfg = _class call LOG_fnc_config;
