@@ -49,7 +49,6 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 						
 						clearMagazineCargoGlobal _obj;
 						clearWeaponCargoGlobal _obj;
-						clearItemCargoGlobal _obj;
 						
 						_mags = _x select 2;
 						_weapons = _x select 3;
@@ -61,10 +60,6 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 						
 						for "_i" from 0 to (count (_weapons select 0)) do {
 							_obj addWeaponCargoGlobal [_weapons select 0 select _i, ASNUMBER(_weapons select 1 select _i)];
-						};
-						
-						for "_i" from 0 to (count (_items select 0)) do {
-							_obj addItemCargoGlobal [_items select 0 select _i, ASNUMBER(_items select 1 select _i)];
 						};
 						
 						_contents set [_forEachIndex, "REMOVE"];

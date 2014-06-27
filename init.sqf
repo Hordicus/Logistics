@@ -1,3 +1,5 @@
+call compile preprocessFileLineNumbers "logistics\server.sqf";
+
 if ( !hasInterface ) exitwith{};
 [] spawn {
 waitUntil {!isNull player && player == player};
