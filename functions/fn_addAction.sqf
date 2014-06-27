@@ -1,6 +1,6 @@
 LOG_actions = missionNamespace getVariable ['LOG_actions', []];
 LOG_actionsIds = missionNamespace getVariable ['LOG_actionsIds', []];
-LOG_actionsVehicleIds = missionNamespace getVariable ['LOG_actionsIds', []];
+LOG_actionsVehicleIds = missionNamespace getVariable ['LOG_actionsVehicleIds', []];
 
 private ['_id'];
 _id = count LOG_actions;
