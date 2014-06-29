@@ -1,11 +1,4 @@
 call compile preprocessFileLineNumbers "logistics\server.sqf";
-
-if ( !hasInterface ) exitwith{};
-[] spawn {
-waitUntil {!isNull player && player == player};
-waitUntil{!isNil "BIS_fnc_init"};
-waitUntil {!(isNull (findDisplay 46))};
-
 LOG_currentObject = objNull;
 LOG_keyBindID = -1;
 
@@ -24,6 +17,12 @@ LOG_PVAR_UNLOADITEM_RES = objNull;
 LOG_PVAR_SETVELOCITY = objNull;
 
 LOG_eventHandlers = [];
+
+if ( !hasInterface ) exitwith{};
+[] spawn {
+waitUntil {!isNull player && player == player};
+waitUntil{!isNil "BIS_fnc_init"};
+waitUntil {!(isNull (findDisplay 46))};
 
 [] call LOG_fnc_resetActionConditions;
 
