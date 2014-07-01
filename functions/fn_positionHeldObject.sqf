@@ -49,20 +49,21 @@ _intersects = [LOG_currentObject];
 
 _adjustDist = 0;
 while { LOG_currentObject in _intersects } do {
-	LOG_currentObject attachTo [player, [
+	LOG_currentObject setPosATL (player modelToWorld [
 		_centerFromPlayer,
-		// (_distanceFromPlayer + (abs(_corner select 0) max abs(_corner select 1))),
-		_distanceFromPlayer + abs(_corner select 1) + _adjustDist,
-		// _offsetHeight + (_bbCenter select 2)
-		(_bbCenter select 2)
-	]];
+		(_distanceFromPlayer + (abs(_corner select 0) max abs(_corner select 1))),
+		_offsetHeight + (_bbCenter select 2)
+	]);
 
 	LOG_currentObject setVectorDirAndUp [[1, _direction] call LOG_fnc_polar2vect, vectorUp LOG_currentObject];
 	LOG_PVAR_SETVECTORDIRANDUP = [LOG_currentObject, [[1, _direction] call LOG_fnc_polar2vect, vectorUp LOG_currentObject]];
 	publicVariableServer "LOG_PVAR_SETVECTORDIRANDUP";
 
 	_playerPos = getPosATL player;
-	_intersects = lineIntersectsWith [ATLtoASL _playerPos, ATLtoASL [_playerPos select 0, _playerPos select 1, (_playerPos select 2)-_maxHeight]];
+	_intersects = lineIntersectsWith [
+		ATLtoASL [_playerPos select 0, _playerPos select 1, (_playerPos select 2)+_maxHeight],
+		ATLtoASL [_playerPos select 0, _playerPos select 1, (_playerPos select 2)-_maxHeight]
+	];
 
 	_adjustDist = _adjustDist + 1;
 };
@@ -70,10 +71,8 @@ while { LOG_currentObject in _intersects } do {
 // Final positioning
 LOG_currentObject attachTo [player, [
 	_centerFromPlayer,
-	// (_distanceFromPlayer + (abs(_corner select 0) max abs(_corner select 1))),
-	_distanceFromPlayer + abs(_corner select 1) + _adjustDist-1,
+	(_distanceFromPlayer + (abs(_corner select 0) max abs(_corner select 1))),
 	_offsetHeight + (_bbCenter select 2)
 ]];
-
 
 LOG_currentObject
