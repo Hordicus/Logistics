@@ -51,7 +51,8 @@ if ( typeName _objects != "ARRAY" ) then {
 				typeOf _object,
 				damage _object,
 				getMagazineCargo _object,
-				getWeaponCargo _object
+				getWeaponCargo _object,
+				_object getVariable ['LOG_contents', []]
 			];
 			
 			[] call LOG_fnc_releaseObject;
