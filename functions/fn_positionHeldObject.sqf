@@ -36,11 +36,7 @@ LOG_pos_direction          = _direction;
 // Detach object so we can reattach with new positioning
 detach LOG_currentObject;
 
-_bb = boundingBox LOG_currentObject;
 _bbCenter = boundingCenter LOG_currentObject;
-
-
-_corner = [_bbCenter select 0, _bbCenter select 1, _bb select 1 select 0, _bb select 1 select 1, _direction] call LOG_fnc_getCorner;
 
 _objDim   = LOG_currentObject call LOG_fnc_objectDemensions;
 _maxHeight = _objDim select 2;
@@ -51,7 +47,7 @@ _adjustDist = 0;
 while { LOG_currentObject in _intersects } do {
 	LOG_currentObject setPosATL (player modelToWorld [
 		_centerFromPlayer,
-		(_distanceFromPlayer + (abs(_corner select 0) max abs(_corner select 1))),
+		(_distanceFromPlayer + ((_objDim select 0) max (_objDim select 1))/2 + _adjustDist),
 		_offsetHeight + (_bbCenter select 2)
 	]);
 
@@ -71,7 +67,7 @@ while { LOG_currentObject in _intersects } do {
 // Final positioning
 LOG_currentObject attachTo [player, [
 	_centerFromPlayer,
-	(_distanceFromPlayer + (abs(_corner select 0) max abs(_corner select 1))),
+	(_distanceFromPlayer + ((_objDim select 0) max (_objDim select 1))/2 + (_adjustDist-1)),
 	_offsetHeight + (_bbCenter select 2)
 ]];
 
