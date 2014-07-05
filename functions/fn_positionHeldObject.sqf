@@ -51,7 +51,6 @@ while { LOG_currentObject in _intersects } do {
 		_offsetHeight + (_bbCenter select 2)
 	]);
 
-	LOG_currentObject setVectorDirAndUp [[1, _direction] call LOG_fnc_polar2vect, vectorUp LOG_currentObject];
 	LOG_PVAR_SETVECTORDIRANDUP = [LOG_currentObject, [[1, _direction] call LOG_fnc_polar2vect, vectorUp LOG_currentObject]];
 	publicVariableServer "LOG_PVAR_SETVECTORDIRANDUP";
 
@@ -70,5 +69,8 @@ LOG_currentObject attachTo [player, [
 	(_distanceFromPlayer + ((_objDim select 0) max (_objDim select 1))/2 + (_adjustDist-1)),
 	_offsetHeight + (_bbCenter select 2)
 ]];
+
+LOG_PVAR_SETVECTORDIRANDUP = [LOG_currentObject, [[1, _direction] call LOG_fnc_polar2vect, vectorUp LOG_currentObject]];
+publicVariableServer "LOG_PVAR_SETVECTORDIRANDUP";
 
 LOG_currentObject
