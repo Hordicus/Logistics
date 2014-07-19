@@ -2,15 +2,6 @@ call compile preprocessFileLineNumbers "logistics\server.sqf";
 LOG_currentObject = objNull;
 LOG_keyBindID = -1;
 
-LOG_pos_maxDistanceFromPlayer = ("maxDistanceFromPlayer" call LOG_fnc_config) select 1;
-LOG_pos_minDistanceFromPlayer = ("minDistanceFromPlayer" call LOG_fnc_config) select 1;
-
-LOG_pos_maxOffsetHeight = ("maxOffsetHeight" call LOG_fnc_config) select 1;
-LOG_pos_minOffsetHeight = ("minOffsetHeight" call LOG_fnc_config) select 1;
-
-LOG_pos_maxCenterFromPlayer = ("maxCenterFromPlayer" call LOG_fnc_config) select 1;
-LOG_pos_minCenterFromPlayer = ("minCenterFromPlayer" call LOG_fnc_config) select 1;
-
 LOG_showingContentsOf = objNull;
 
 LOG_PVAR_UNLOADITEM_RES = objNull;
@@ -23,6 +14,15 @@ if ( !hasInterface ) exitwith{};
 waitUntil {!isNull player && player == player};
 waitUntil{!isNil "BIS_fnc_init"};
 waitUntil {!(isNull (findDisplay 46))};
+
+LOG_pos_maxDistanceFromPlayer = ("maxDistanceFromPlayer" call LOG_fnc_config) select 1;
+LOG_pos_minDistanceFromPlayer = ("minDistanceFromPlayer" call LOG_fnc_config) select 1;
+
+LOG_pos_maxOffsetHeight = ("maxOffsetHeight" call LOG_fnc_config) select 1;
+LOG_pos_minOffsetHeight = ("minOffsetHeight" call LOG_fnc_config) select 1;
+
+LOG_pos_maxCenterFromPlayer = ("maxCenterFromPlayer" call LOG_fnc_config) select 1;
+LOG_pos_minCenterFromPlayer = ("minCenterFromPlayer" call LOG_fnc_config) select 1;
 
 [] call LOG_fnc_resetActionConditions;
 
