@@ -5,6 +5,7 @@ if ( !isServer ) exitwith{};
 
 LOG_PVAR_UNLOADITEM = objNull;
 LOG_PVAR_SETVELOCITY_SERVER = objNull;
+LOG_PVAR_setOwner = [objNull, objNull];
 
 "LOG_PVAR_UNLOADITEM" addPublicVariableEventHandler {
 	private ["_client","_container","_item","_obj","_contents","_mags","_weapons","_items"];
@@ -97,7 +98,7 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 	};
 };
 
-"LOG_PVAR_SETVECTORDIRANDUP" addPublicVariableEventHandler {
-	(_this select 1 select 0) setVectorDirAndUp (_this select 1 select 1);
+"LOG_PVAR_setOwner" addPublicVariableEventHandler {
+	(_this select 1 select 1) setOwner owner (_this select 1 select 0);
 };
 };

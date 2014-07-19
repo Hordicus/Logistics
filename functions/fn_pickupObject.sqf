@@ -14,9 +14,16 @@ if ( [_object] call LOG_fnc_isMoveable ) then {
 	LOG_pos_offsetHeight = 0;
 	LOG_pos_centerFromPlayer = 0;
 	LOG_pos_direction = 0;
-
-	[] call LOG_fnc_positionHeldObject;
-	[] call LOG_fnc_safeWeapon;
+	
+	LOG_PVAR_setOwner = [player, LOG_currentObject];
+	publicVariableServer "LOG_PVAR_setOwner";
+	
+	[] spawn {
+		waitUntil {local LOG_currentObject};
+		[] call LOG_fnc_positionHeldObject;
+		[] call LOG_fnc_safeWeapon;
+	};	
+	
 	[] spawn {
 		while { !isNull LOG_currentObject } do {
 			if ( vehicle player != player ) then {
