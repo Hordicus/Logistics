@@ -113,14 +113,17 @@ while {true} do {
 				LOG_action_showContents = _cursorTarget;
 				_setVars set [count _setVars, "LOG_action_showContents"];
 				_containerName = getText (configFile >> "CfgVehicles" >> typeOf _cursorTarget >> "displayName");
-				['show_contents', format['Show %1 Contents', _containerName]] call LOG_fnc_renameAction;
+				['show_contents', format["<t color='#c7c500'><img image='logistics\icons\unload.paa' /> Show %1 Contents</t>", _containerName]] call LOG_fnc_renameAction;
 
 				if ( !isNull LOG_currentObject ) then {
 					_heldName = getText (configFile >> "CfgVehicles" >> typeOf LOG_currentObject >> "displayName");
 					_text = format['Load %1 into %2', _heldName, _containerName];
 					
 					if !( [_cursorTarget, LOG_currentObject] call LOG_fnc_hasRoom ) then {
-						_text = format['<t color="#FF0000">%1</t>', _text];
+						_text = format["<t color='#FF0000'><img image='logistics\icons\load.paa' /> %1</t>", _text];
+					}
+					else {
+						_text = format["<t color='#c7c500'><img image='logistics\icons\load.paa' /> %1</t>", _text];
 					};
 					
 					['load_object', _text] call LOG_fnc_renameAction;
@@ -177,7 +180,7 @@ while {true} do {
 							LOG_action_towVehicle = _objectBehind;
 							_setVars set [count _setVars, "LOG_action_towVehicle"];							
 
-							_text = format['Tow %1', getText (configFile >> "CfgVehicles" >> typeOf LOG_action_towVehicle >> "displayName")];							
+							_text = format["Tow %1", getText (configFile >> "CfgVehicles" >> typeOf LOG_action_towVehicle >> "displayName")];							
 						};
 					}};
 					
@@ -187,10 +190,10 @@ while {true} do {
 							isNull (LOG_action_towVehicle getVariable ['LOG_towedObject', objNull]) &&
 							isNull (_veh getVariable ['LOG_towedTo', objNull])
 						) then {
-							['tow', _text] call LOG_fnc_renameAction;
+							['tow', format["<t color='#c7c500'><img image='logistics\icons\towlift.paa' /> %1</t>", _text]] call LOG_fnc_renameAction;
 						}
 						else {
-							['tow', format['<t color="#FF0000">%1</t>', _text]] call LOG_fnc_renameAction;
+							['tow', format["<t color='#FF0000'><img image='logistics\icons\towlift.paa' /> %1</t>", _text]] call LOG_fnc_renameAction;
 						};
 					};
 				};
@@ -203,7 +206,7 @@ while {true} do {
 			
 				// Update release text
 				if ( !isNull _towedVeh ) then {
-					['release', format['Release %1', getText (configFile >> "CfgVehicles" >> typeOf _towedVeh >> "displayName")]] call LOG_fnc_renameAction;
+					['release', format["<t color='#d45500'><img image='logistics\icons\towlift.paa' /> Release %1</t>", getText (configFile >> "CfgVehicles" >> typeOf _towedVeh >> "displayName")]] call LOG_fnc_renameAction;
 				};
 			};
 		};

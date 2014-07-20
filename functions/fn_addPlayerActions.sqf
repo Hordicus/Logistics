@@ -17,7 +17,7 @@ _actions = [];
 
 _actions set [count _actions, [
 	"move",
-	"Move Object",
+	"<t color='#ff9c00'><img image='logistics\icons\moveobject.paa' /> Move Object</t>",
 	{ LOG_cursorTarget_moveable call LOG_fnc_pickupObject },
 	_basePriority,
 	true,
@@ -26,7 +26,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"enable_keybinds",
-	"Enable Keybinds",
+	"<t color='#00a3e0'><img image='logistics\icons\enablekb.paa' /> Enable Keybinds</t>",
 	LOG_fnc_enableKeybinds,
 	_basePriority-1,
 	true,
@@ -35,7 +35,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"disable_keybinds",
-	"Disable Keybinds",
+	"<t color='#00a3e0'><img image='logistics\icons\disablekb.paa' /> Disable Keybinds</t>",
 	LOG_fnc_disableKeybinds,
 	_basePriority-1,
 	true,
@@ -44,7 +44,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"release_object",
-	"Release Object",
+	"<t color='#ff9c00'><img image='logistics\icons\releaseobject.paa' /> Release Object</t>",
 	{ [] call LOG_fnc_releaseObject },
 	_basePriority+10,
 	true,
@@ -53,7 +53,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"rotate",
-	"Rotate Object",
+	"<t color='#d45500'><img image='logistics\icons\rotateobject.paa' /> Rotate Options</t>",
 	{ LOG_action_showRotateOptions = true; },
 	_basePriority,
 	false,
@@ -62,7 +62,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"rotate45",
-	"Rotate 45",
+	"<t color='#d45500'>Rotate 45</t>",
 	{ [nil, nil, nil, LOG_pos_direction + 45] call LOG_fnc_positionHeldObject },
 	_basePriority,
 	false,
@@ -71,7 +71,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"rotate90",
-	"Rotate 90",
+	"<t color='#d45500'>Rotate 90</t>",
 	{ [nil, nil, nil, LOG_pos_direction + 90] call LOG_fnc_positionHeldObject },
 	_basePriority,
 	false,
@@ -80,7 +80,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"rotate180",
-	"Rotate 180",
+	"<t color='#d45500'>Rotate 180</t>",
 	{ [nil, nil, nil, LOG_pos_direction + 180] call LOG_fnc_positionHeldObject },
 	_basePriority,
 	false,
@@ -89,7 +89,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"rotate_reset",
-	"Reset Rotation",
+	"<t color='#d45500'>Reset Rotation</t>",
 	{ [nil, nil, nil, 0] call LOG_fnc_positionHeldObject },
 	_basePriority,
 	false,
@@ -98,7 +98,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"rotate_hide",
-	"Hide Rotation Options",
+	"<t color='#d45500'>Hide Rotation Options</t>",
 	{ LOG_action_showRotateOptions = false; },
 	_basePriority,
 	false,
@@ -108,7 +108,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"pos_object",
-	"Position Object",
+	"<t color='#d48200'><img image='logistics\icons\positionoptions.paa' /> Position Options</t>",
 	{ LOG_action_showPosOptions = true; },
 	_basePriority,
 	false,
@@ -117,7 +117,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"match_terrain",
-	"Match terrain angle",
+	"<t color='#d48200'><img image='logistics\icons\terrainon.paa' /> Match terrain angle</t>",
 	{
 		LOG_action_matchTerrain = true;
 		[] call LOG_fnc_toggleMatchTerrain;
@@ -129,7 +129,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"match_terrain_stop",
-	"Stop Match terrain angle",
+	"<t color='#d48200'><img image='logistics\icons\terrainoff.paa' /> Stop Match terrain angle</t>",
 	{
 		LOG_action_matchTerrain = false;
 		LOG_currentObject setVectorUp [0,0,1];
@@ -142,7 +142,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"pos_forward",
-	"Move forward 0.5m",
+	"<t color='#d48200'>Move forward 0.5m</t>",
 	{ [LOG_pos_distanceFromPlayer + 0.5 ] call LOG_fnc_positionHeldObject },
 	_basePriority,
 	false,
@@ -151,7 +151,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"pos_back",
-	"Move back 0.5m",
+	"<t color='#d48200'>Move back 0.5m</t>",
 	{ [LOG_pos_distanceFromPlayer - 0.5 ] call LOG_fnc_positionHeldObject },
 	_basePriority,
 	false,
@@ -160,7 +160,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"pos_down",
-	"Move down 0.1m",
+	"<t color='#d48200'>Move down 0.1m</t>",
 	{ [nil, LOG_pos_offsetHeight - 0.1 ] call LOG_fnc_positionHeldObject },
 	_basePriority,
 	false,
@@ -169,7 +169,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"pos_up",
-	"Move up 0.1m",
+	"<t color='#d48200'>Move up 0.1m</t>",
 	{ [nil, LOG_pos_offsetHeight + 0.1 ] call LOG_fnc_positionHeldObject },
 	_basePriority,
 	false,
@@ -178,7 +178,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"pos_left",
-	"Move left 0.5m",
+	"<t color='#d48200'>Move left 0.5m</t>",
 	{ [nil, nil, LOG_pos_centerFromPlayer - 0.5 ] call LOG_fnc_positionHeldObject },
 	_basePriority,
 	false,
@@ -187,7 +187,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"pos_right",
-	"Move right 0.5m",
+	"<t color='#d48200'>Move right 0.5m</t>",
 	{ [nil, nil, LOG_pos_centerFromPlayer + 0.5 ] call LOG_fnc_positionHeldObject },
 	_basePriority,
 	false,
@@ -196,7 +196,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"pos_reset",
-	"Reset Position",
+	"<t color='#d48200'>Reset Position</t>",
 	{ [LOG_currentObject] call LOG_fnc_pickupObject },
 	_basePriority,
 	false,
@@ -205,7 +205,7 @@ _actions set [count _actions, [
 
 _actions set [count _actions, [
 	"pos_hide",
-	"Hide Positioning Options",
+	"<t color='#d48200'>Hide Positioning Options</t>",
 	{ LOG_action_showPosOptions = false; },
 	_basePriority,
 	false,
@@ -252,7 +252,7 @@ _actions set [count _actions, [
 			hint _error;
 		};
 	},
-	_basePriority,
+	_basePriority+10,
 	true,
 	"!isNull LOG_action_towVehicle"
 ]];
