@@ -17,7 +17,7 @@ _class = typeOf _object;
 
 _cfg = _class call LOG_fnc_config;
 
-_result = count _cfg > 0 && { _cfg select CONFIG_INDEX_SIZE >= 0 } && (parseNumber netId _object) > 1;
+_result = count _cfg > 0 && { _cfg select CONFIG_INDEX_SIZE >= 0 } && (parseNumber netId _object) > 1 && !(_object getVariable ["LOG_disabled", false]);
 
 if ( _result ) then {
 	_result = ['beforeMove', [_object]] call LOG_fnc_triggerEvent;

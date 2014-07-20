@@ -109,7 +109,7 @@ while {true} do {
 				_setVars set [count _setVars, "LOG_cursorTarget_moveable"];
 			};
 			
-			if ( ((typeOf _cursorTarget) call LOG_fnc_containerSize) > 0 ) then {
+			if ( ((typeOf _cursorTarget) call LOG_fnc_containerSize) > 0 && !(_cursorTarget getVariable ['LOG_disabled', false])) then {
 				LOG_action_showContents = _cursorTarget;
 				_setVars set [count _setVars, "LOG_action_showContents"];
 				_containerName = getText (configFile >> "CfgVehicles" >> typeOf _cursorTarget >> "displayName");
@@ -139,7 +139,7 @@ while {true} do {
 			if ( isNull _towedVeh ) then {
 				// Is driver and not towing a vehicle, look for vehicles to tow/lift
 				_vehConfig = (typeOf _veh) call LOG_fnc_config;
-				if ( count _vehConfig > 0 ) then {
+				if ( count _vehConfig > 0 && !(_veh getVariable ['LOG_disabled', false])) then {
 					_text = "";
 					
 					if ( _veh isKindOf "Air" ) then {
