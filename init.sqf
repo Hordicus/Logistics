@@ -7,7 +7,7 @@ LOG_showingContentsOf = objNull;
 LOG_PVAR_UNLOADITEM_RES = objNull;
 LOG_PVAR_SETVELOCITY = objNull;
 
-LOG_eventHandlers = [];
+LOG_eventHandlers = missionNamespace getVariable ['LOG_eventHandlers', []];
 
 if ( !hasInterface ) exitwith{};
 [] spawn {
