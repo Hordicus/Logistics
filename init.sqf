@@ -152,6 +152,18 @@ while {true} do {
 						}
 						else {
 							_objectBelow = objNull;
+							_heliBottom = +_vehPos;
+							_heliBottom set [2, (_heliBottom select 2) - (([_veh] call LOG_fnc_objectDemensions) select 2)/2];
+							
+							{
+								if !( isPlayer _x || _x == _veh ) then {
+									if ( _x call LOG_fnc_isTowable ) exitwith {
+										_objectBelow = _x;
+									};
+								};
+								nil
+							} count (nearestObjects [_heliBottom, ["All"], 5]);
+						
 						};
 						
 						if ( _objectBelow call LOG_fnc_isTowable ) then {
