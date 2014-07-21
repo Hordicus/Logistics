@@ -270,8 +270,14 @@ _actions set [count _actions, [
 	"load_object",
 	"Load Object",
 	{
-		if ( [LOG_action_showContents, LOG_currentObject] call LOG_fnc_hasRoom ) then {
-			[LOG_currentObject, LOG_action_showContents, true] call LOG_fnc_loadInObject;
+		private ['_obj'];
+		_obj = LOG_currentObject;
+		if ( isNull _obj ) then {
+			_obj = LOG_action_loadObject;
+		};
+		
+		if ( [LOG_action_showContents, _obj] call LOG_fnc_hasRoom ) then {
+			[_obj, LOG_action_showContents, true] call LOG_fnc_loadInObject;
 		}
 		else {
 			hint "The container does not have room for that object";
@@ -279,7 +285,16 @@ _actions set [count _actions, [
 	},
 	_basePriority,
 	true,
-	"!isNull LOG_action_showContents && !isNull LOG_currentObject && LOG_currentObject != LOG_action_showContents"
+	"!isNull LOG_action_showContents && ((!isNull LOG_currentObject && LOG_currentObject != LOG_action_showContents) || (!isNull LOG_action_loadObject && LOG_action_loadObject != LOG_action_showContents && LOG_action_loadObject distance LOG_action_showContents < 10 ))"
+]];
+
+_actions set [count _actions, [
+	"select_load_object",
+	"<t color='#c7c500'><img image='logistics\icons\load.paa' /> Load Object</t>",
+	{LOG_action_loadObject = LOG_cursorTarget_moveable},
+	_basePriority+10,
+	true,
+	"!isNull LOG_cursorTarget_moveable && isNull LOG_currentObject"
 ]];
 
 _ids = [];
