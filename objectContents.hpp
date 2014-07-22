@@ -82,7 +82,6 @@ class objectContents {
 	movingEnable = false;
 	enableSimulation = true;
 	
-	onLoad = "_this execVM 'logistics\event_onLoad.sqf';";
 	onDestroy = "[] call LOG_fnc_destroyObjectCam;";
 
 	class controlsBackground {
