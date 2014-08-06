@@ -120,7 +120,9 @@ _actions set [count _actions, [
 	"<t color='#d48200'><img image='logistics\icons\terrainon.paa' /> Match terrain angle</t>",
 	{
 		LOG_action_matchTerrain = true;
-		[] call LOG_fnc_toggleMatchTerrain;
+		["matchTerrain", "onEachFrame", {
+			[LOG_currentObject] call LOG_fnc_matchTerrain;
+		}] call BIS_fnc_addStackedEventHandler;
 	},
 	_basePriority,
 	false,
@@ -132,8 +134,8 @@ _actions set [count _actions, [
 	"<t color='#d48200'><img image='logistics\icons\terrainoff.paa' /> Stop Match terrain angle</t>",
 	{
 		LOG_action_matchTerrain = false;
+		["matchTerrain", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
 		LOG_currentObject setVectorUp [0,0,1];
-		[] call LOG_fnc_toggleMatchTerrain;
 	},
 	_basePriority,
 	false,

@@ -52,11 +52,6 @@ LOG_keyBindID = (findDisplay 46) displayAddEventHandler ["KeyDown", "_this call 
 			true
 		};
 		
-		case (_key in actionKeys "BuldTextureInfo"): {
-			[] call LOG_fnc_toggleMatchTerrain;
-			true
-		};
-		
 		default {
 			false
 		};
