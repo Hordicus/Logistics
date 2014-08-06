@@ -13,9 +13,9 @@
 
 private ["_objects","_object","_container","_cache","_contents","_type","_index","_info"];
 
-_objects = [_this, 0, "", ["", objNull, []]] call BIS_fnc_param;
-_container = [_this, 1, objNull, [objNull]] call BIS_fnc_param;
-_cache = [_this, 2, true, [true]] call BIS_fnc_param;
+_objects = [_this, 0, "", ["", objNull, []]] call BL_fnc_param;
+_container = [_this, 1, objNull, [objNull]] call BL_fnc_param;
+_cache = [_this, 2, true, [true]] call BL_fnc_param;
 
 _contents = _container getVariable ['LOG_contents', []];
 _type = "";
@@ -52,7 +52,7 @@ if ( typeName _objects != "ARRAY" ) then {
 				damage _object,
 				getMagazineCargo _object,
 				getWeaponCargo _object,
-				getItemCargo _object
+				_object getVariable ['LOG_contents', []]
 			];
 			
 			[] call LOG_fnc_releaseObject;
@@ -71,5 +71,6 @@ if ( typeName _objects != "ARRAY" ) then {
 	}};
 } forEach _objects;
 
+LOG_action_loadObject = objNull;
 ['objectLoadedIn', [_container, _contents]] call LOG_fnc_triggerEvent;
 _container setVariable ['LOG_contents', _contents, true];

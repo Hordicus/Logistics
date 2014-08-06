@@ -16,9 +16,11 @@
 
 private ['_event', '_code', '_index'];
 
-_event = [_this, 0, '', ['']] call BIS_fnc_param;
-_code = [_this, 1, {}, [{}]] call BIS_fnc_param;
+_event = [_this, 0, '', ['']] call BL_fnc_param;
+_code = [_this, 1, {}, [{}]] call BL_fnc_param;
 
+
+LOG_eventHandlers = missionNamespace getVariable ['LOG_eventHandlers', []];
 _index = count LOG_eventHandlers;
 LOG_eventHandlers set [_index, [_event, _code]];
 

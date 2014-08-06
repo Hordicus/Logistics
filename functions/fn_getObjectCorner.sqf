@@ -13,10 +13,10 @@
 
 private ['_object', '_direction', '_bb', '_bbCenter', '_corner'];
 
-_object = [_this, 0, LOG_currentObject, [objNull]] call BIS_fnc_param;
-_direction = [_this, 1, getDir _object, [0]] call BIS_fnc_param;
+_object = [_this, 0, LOG_currentObject, [objNull]] call BL_fnc_param;
+_direction = [_this, 1, getDir _object, [0]] call BL_fnc_param;
 
-_bb = boundingBoxReal _object;
+_bb = boundingBox _object;
 _bbCenter = boundingCenter _object;
 
 

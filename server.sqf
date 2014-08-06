@@ -5,12 +5,13 @@ if ( !isServer ) exitwith{};
 
 LOG_PVAR_UNLOADITEM = objNull;
 LOG_PVAR_SETVELOCITY_SERVER = objNull;
+LOG_PVAR_setOwner = [objNull, objNull];
 
 "LOG_PVAR_UNLOADITEM" addPublicVariableEventHandler {
 	private ["_client","_container","_item","_obj","_contents","_mags","_weapons","_items"];
-	_client    = owner ([_this select 1, 0, objNull, [player]] call BIS_fnc_param);
-	_container = [_this select 1, 1, objNull, [objNull]] call BIS_fnc_param;
-	_item      = [_this select 1, 2, "", [""]] call BIS_fnc_param;
+	_client    = owner ([_this select 1, 0, objNull, [player]] call BL_fnc_param);
+	_container = [_this select 1, 1, objNull, [objNull]] call BL_fnc_param;
+	_item      = [_this select 1, 2, "", [""]] call BL_fnc_param;
 	
 	#ifdef LOG_LOGGING
 	diag_log format['Player %1 (#%2) requesting %3 from %4',
@@ -49,11 +50,9 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 						
 						clearMagazineCargoGlobal _obj;
 						clearWeaponCargoGlobal _obj;
-						clearItemCargoGlobal _obj;
 						
 						_mags = _x select 2;
 						_weapons = _x select 3;
-						_items = _x select 4;
 						
 						for "_i" from 0 to (count (_mags select 0)) do {
 							_obj addMagazineCargoGlobal [_mags select 0 select _i, ASNUMBER(_mags select 1 select _i)];
@@ -63,9 +62,7 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 							_obj addWeaponCargoGlobal [_weapons select 0 select _i, ASNUMBER(_weapons select 1 select _i)];
 						};
 						
-						for "_i" from 0 to (count (_items select 0)) do {
-							_obj addItemCargoGlobal [_items select 0 select _i, ASNUMBER(_items select 1 select _i)];
-						};
+						_obj setVariable ['LOG_contents', _x select 4, true];
 						
 						_contents set [_forEachIndex, "REMOVE"];
 						_contents = _contents - ["REMOVE"];
@@ -87,8 +84,8 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 
 "LOG_PVAR_SETVELOCITY_SERVER" addPublicVariableEventHandler {
 	private ["_client","_veh","_velocity"];
-	_veh      = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
-	_velocity = [_this select 1, 1, [0,0,0], [[]], [3]] call BIS_fnc_param;
+	_veh      = [_this select 1, 0, objNull, [objNull]] call BL_fnc_param;
+	_velocity = [_this select 1, 1, [0,0,0], [[]], [3]] call BL_fnc_param;
 	_client   = owner _veh;
 
 	if ( local _veh ) then {
@@ -101,7 +98,7 @@ LOG_PVAR_SETVELOCITY_SERVER = objNull;
 	};
 };
 
-"LOG_PVAR_SETVECTORDIRANDUP" addPublicVariableEventHandler {
-	(_this select 1 select 0) setVectorDirAndUp (_this select 1 select 1);
+"LOG_PVAR_setOwner" addPublicVariableEventHandler {
+	(_this select 1 select 1) setOwner owner (_this select 1 select 0);
 };
 };

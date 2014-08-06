@@ -13,18 +13,19 @@
 private ["_object","_veh","_objCfg","_result","_vehCfg"];
 #include "macro.sqf"
 
-_object = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
-_veh    = [_this, 1, objNull, [objNull]] call BIS_fnc_param;
+_object = [_this, 0, objNull, [objNull]] call BL_fnc_param;
+_veh    = [_this, 1, objNull, [objNull]] call BL_fnc_param;
 
 _objCfg = (typeOf _object) call LOG_fnc_config;
 _result = false;
 
-if ( count _objCfg > 0 && { _objCfg select CONFIG_INDEX_WEIGHT >= 0 }) then {
+if ( count _objCfg > 0 && { _objCfg select CONFIG_INDEX_WEIGHT >= 0 } && !(_object getVariable ["LOG_disabled", false])) then {
 	if ( !isNull _veh ) then {
 		_vehCfg = (typeOf _veh) call LOG_fnc_config;
 		_result = count _vehCfg > 0 && _vehCfg select CONFIG_INDEX_TOWINGCAPACITY >= _objCfg select CONFIG_INDEX_WEIGHT
 			&& isNull (_veh getVariable ['LOG_towedObject', objNull])
-			&& isNull (_object getVariable ['LOG_towedTo', objNull]);
+			&& isNull (_object getVariable ['LOG_towedTo', objNull])
+			&& !(_veh getVariable ["LOG_disabled", false]);
 	}
 	else {
 		_result = true;

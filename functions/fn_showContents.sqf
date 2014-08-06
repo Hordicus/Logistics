@@ -2,7 +2,7 @@
 
 private ['_container', '_dialog'];
 
-_container = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
+_container = [_this, 0, objNull, [objNull]] call BL_fnc_param;
 _dialog = createDialog 'objectContents';
 _contents = _container getVariable ['LOG_contents', []];
 
