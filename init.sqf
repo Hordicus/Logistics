@@ -1,9 +1,3 @@
-if ( !hasInterface ) exitwith{};
-[] spawn {
-waitUntil {!isNull player && player == player};
-waitUntil{!isNil "BIS_fnc_init"};
-waitUntil {!(isNull (findDisplay 46))};
-
 LOG_currentObject = objNull;
 LOG_keyBindID = -1;
 
@@ -24,13 +18,6 @@ LOG_pos_minOffsetHeight = ("minOffsetHeight" call LOG_fnc_config) select 1;
 
 LOG_pos_maxCenterFromPlayer = ("maxCenterFromPlayer" call LOG_fnc_config) select 1;
 LOG_pos_minCenterFromPlayer = ("minCenterFromPlayer" call LOG_fnc_config) select 1;
-
-LOG_showingContentsOf = objNull;
-
-LOG_PVAR_UNLOADITEM_RES = objNull;
-LOG_PVAR_SETVELOCITY = objNull;
-
-LOG_eventHandlers = [];
 
 [] call LOG_fnc_resetActionConditions;
 
