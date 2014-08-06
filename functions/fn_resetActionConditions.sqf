@@ -10,4 +10,4 @@ LOG_action_liftVehicle = objNull;
 LOG_action_towVehicle = objNull;
 LOG_action_loadObject = objNull;
 LOG_action_matchTerrain = false;
-// ["matchTerrain", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
+["matchTerrain", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;

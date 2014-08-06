@@ -50,6 +50,7 @@ LOG_PVAR_setOwner = [objNull, objNull];
 						
 						clearMagazineCargoGlobal _obj;
 						clearWeaponCargoGlobal _obj;
+						clearItemCargoGlobal _obj;
 						
 						_mags = _x select 2;
 						_weapons = _x select 3;
@@ -62,7 +63,11 @@ LOG_PVAR_setOwner = [objNull, objNull];
 							_obj addWeaponCargoGlobal [_weapons select 0 select _i, ASNUMBER(_weapons select 1 select _i)];
 						};
 						
-						_obj setVariable ['LOG_contents', _x select 4, true];
+						for "_i" from 0 to (count (_items select 0)) do {
+							_obj addItemCargoGlobal [_items select 0 select _i, ASNUMBER(_items select 1 select _i)];
+						};
+						
+						_obj setVariable ['LOG_contents', _x select 5, true];
 						
 						_contents set [_forEachIndex, "REMOVE"];
 						_contents = _contents - ["REMOVE"];

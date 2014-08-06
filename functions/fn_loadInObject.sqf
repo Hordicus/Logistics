@@ -52,6 +52,7 @@ if ( typeName _objects != "ARRAY" ) then {
 				damage _object,
 				getMagazineCargo _object,
 				getWeaponCargo _object,
+				getItemCargo _object,
 				_object getVariable ['LOG_contents', []]
 			];
 			
