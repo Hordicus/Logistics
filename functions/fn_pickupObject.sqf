@@ -1,5 +1,5 @@
 private ['_object'];
-_object = [_this, 0, objNull, [objNull]] call BL_fnc_param;
+_object = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 
 if ( [_object] call LOG_fnc_isMoveable ) then {
 	if ( !isNil "LOG_currentObject" ) then {

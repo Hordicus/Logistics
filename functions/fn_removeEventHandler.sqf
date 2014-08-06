@@ -10,7 +10,7 @@
 */
 
 private ['_event', '_index'];
-_index = [_this, 0, -1, [0]] call BL_fnc_param;
+_index = [_this, 0, -1, [0]] call BIS_fnc_param;
 
 _event = [];
 

@@ -10,10 +10,6 @@ LOG_PVAR_SETVELOCITY = objNull;
 LOG_eventHandlers = missionNamespace getVariable ['LOG_eventHandlers', []];
 
 if ( !hasInterface ) exitwith{};
-[] spawn {
-waitUntil {!isNull player && player == player};
-waitUntil{!isNil "BIS_fnc_init"};
-waitUntil {!(isNull (findDisplay 46))};
 
 LOG_pos_maxDistanceFromPlayer = ("maxDistanceFromPlayer" call LOG_fnc_config) select 1;
 LOG_pos_minDistanceFromPlayer = ("minDistanceFromPlayer" call LOG_fnc_config) select 1;
@@ -24,28 +20,32 @@ LOG_pos_minOffsetHeight = ("minOffsetHeight" call LOG_fnc_config) select 1;
 LOG_pos_maxCenterFromPlayer = ("maxCenterFromPlayer" call LOG_fnc_config) select 1;
 LOG_pos_minCenterFromPlayer = ("minCenterFromPlayer" call LOG_fnc_config) select 1;
 
+LOG_showingContentsOf = objNull;
+
+LOG_PVAR_UNLOADITEM_RES = objNull;
+LOG_PVAR_SETVELOCITY = objNull;
+
+LOG_eventHandlers = [];
+
 [] call LOG_fnc_resetActionConditions;
 
 "LOG_PVAR_SETVELOCITY" addPublicVariableEventHandler {
 	private ["_veh","_velocity"];
-	_veh      = [_this select 1, 0, objNull, [objNull]] call BL_fnc_param;
-	_velocity = [_this select 1, 1, [0,0,0], [[]], [3]] call BL_fnc_param;
+	_veh      = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
+	_velocity = [_this select 1, 1, [0,0,0], [[]], [3]] call BIS_fnc_param;
 	
 	_veh setVelocity _velocity;
 };
 
+[] spawn {
+waitUntil {!isNull player && player == player};
+waitUntil{!isNil "BIS_fnc_init"};
+waitUntil {!(isNull (findDisplay 46))};
+
 player call LOG_fnc_addPlayerActions;
 player addEventHandler ['respawn', {
 	[] call LOG_fnc_resetActionConditions;
-	
-	_reAdd = +LOG_actions;
-	LOG_actions = [];
-	LOG_actionsIds = [];
-	
-	{
-		_x call LOG_fnc_addAction;
-		nil
-	} count _reAdd;
+	player call LOG_fnc_addPlayerActions;
 }];
 
 player addEventHandler ['killed', {
@@ -53,43 +53,6 @@ player addEventHandler ['killed', {
 		[] call LOG_fnc_releaseObject;
 	};
 }];
-
-[] spawn {
-	_veh = vehicle player;
-
-	while { true } do {
-		waitUntil { _veh != vehicle player };
-		
-		{
-			_veh removeAction _x;
-		} count (_veh getVariable ['vehicleActionIds', []]);
-
-		_veh = vehicle player;
-		
-		if !( _veh isKindOf "Man" ) then {
-			_veh = vehicle player;
-			_actions = [];
-			
-			{
-				_actions set [_forEachIndex, _veh addAction [
-					_x select 0,
-					"logistics\functions\fn_addActionHandler.sqf",
-					_forEachIndex,
-					_x select 3,
-					_x select 4,
-					_x select 5,
-					_x select 6,
-					_x select 7
-				]];
-			} forEach LOG_actions;
-			
-			_veh setVariable ['vehicleActionIds', _actions];
-		};
-		
-		waitUntil { _veh != vehicle player };
-	};
-};
-
 _setVars = [];
 while {true} do {
 	_cursorTarget = cursorTarget;
@@ -148,10 +111,10 @@ while {true} do {
 					_text = "";
 					
 					if ( _veh isKindOf "Air" ) then {
-						_vehPos = _veh modelToWorld [0,0,0];
+						_vehPos = _veh modelToWorld (getCenterOfMass _veh);
 						_vehPosLess10 = [_vehPos select 0, _vehPos select 1, (_vehPos select 2)-10];
 						_objectBelow = (lineIntersectsWith [ATLtoASL _vehPos, ATLtoASL _vehPosLess10, objNull, objNull, true]) - [_veh] - allUnits;
-
+						
 						if ( count _objectBelow > 0 ) then {
 							_objectBelow = _objectBelow select (count _objectBelow-1);
 						}
@@ -185,7 +148,6 @@ while {true} do {
 						_vehPosBehind = [_vehPos, 2 + ((_vehDim select 1)/2), (getDir vehicle player)-180] call BIS_fnc_relPos;
 						
 						_objectBehind = (lineIntersectsWith [ATLtoASL _vehPos, ATLtoASL _vehPosBehind, objNull, objNull, true]) - [_veh] - allUnits;
-						
 						if ( count _objectBehind > 0 ) then {
 							_objectBehind = _objectBehind select (count _objectBehind-1);
 						}

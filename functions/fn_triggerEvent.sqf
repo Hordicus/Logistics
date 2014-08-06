@@ -12,8 +12,8 @@
 */
 
 private ['_event', '_params', '_result', '_return'];
-_event = [_this, 0, '', ['']] call BL_fnc_param;
-_params = [_this, 1, [], [[]]] call BL_fnc_param;
+_event = [_this, 0, '', ['']] call BIS_fnc_param;
+_params = [_this, 1, [], [[]]] call BIS_fnc_param;
 
 _result = true;
 

@@ -11,7 +11,7 @@
 
 #include "macro.sqf"
 private ['_type', '_cfg', '_size'];
-_type = [_this, 0, "", ["", objNull]] call BL_fnc_param;
+_type = [_this, 0, "", ["", objNull]] call BIS_fnc_param;
 
 if ( typeName _type == "OBJECT" ) then {
 	_type = typeOf _type;

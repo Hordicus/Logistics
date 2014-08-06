@@ -17,11 +17,11 @@
 
 private ["_pivotX","_pivotY","_cornerX","_cornerY","_angle","_diffX","_diffY","_distance","_y","_x"];
 
-_pivotX  = [_this, 0, 0, [0]] call BL_fnc_param;
-_pivotY  = [_this, 1, 0, [0]] call BL_fnc_param;
-_cornerX = [_this, 2, 0, [0]] call BL_fnc_param;
-_cornerY = [_this, 3, 0, [0]] call BL_fnc_param;
-_angle   = [_this, 4, 0, [0]] call BL_fnc_param;
+_pivotX  = [_this, 0, 0, [0]] call BIS_fnc_param;
+_pivotY  = [_this, 1, 0, [0]] call BIS_fnc_param;
+_cornerX = [_this, 2, 0, [0]] call BIS_fnc_param;
+_cornerY = [_this, 3, 0, [0]] call BIS_fnc_param;
+_angle   = [_this, 4, 0, [0]] call BIS_fnc_param;
 
 // get distance from center to point
 _diffX = _cornerX - _pivotX;

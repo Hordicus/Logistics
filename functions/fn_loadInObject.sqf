@@ -13,9 +13,9 @@
 
 private ["_objects","_object","_container","_cache","_contents","_type","_index","_info"];
 
-_objects = [_this, 0, "", ["", objNull, []]] call BL_fnc_param;
-_container = [_this, 1, objNull, [objNull]] call BL_fnc_param;
-_cache = [_this, 2, true, [true]] call BL_fnc_param;
+_objects = [_this, 0, "", ["", objNull, []]] call BIS_fnc_param;
+_container = [_this, 1, objNull, [objNull]] call BIS_fnc_param;
+_cache = [_this, 2, true, [true]] call BIS_fnc_param;
 
 _contents = _container getVariable ['LOG_contents', []];
 _type = "";

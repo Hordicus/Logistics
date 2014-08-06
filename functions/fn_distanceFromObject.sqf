@@ -14,8 +14,8 @@
 
 private ["_obj1","_obj2","_obj1Pos","_obj2Pos","_obj1PosGround","_obj2PosGround","_distance","_obj1Dim","_obj1MaxSize","_obj2Dim","_obj2MaxSize","_heightDiff"];
 
-_obj1 = [_this, 0, objNull, [objNull]] call BL_fnc_param;
-_obj2 = [_this, 1, objNull, [objNull]] call BL_fnc_param;
+_obj1 = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
+_obj2 = [_this, 1, objNull, [objNull]] call BIS_fnc_param;
 
 _obj1Pos = getPosATL _obj1;
 _obj2Pos = getPosATL _obj2;

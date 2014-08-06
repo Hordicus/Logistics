@@ -8,16 +8,16 @@
 	
 */
 private ["_veh","_towableObject","_behind","_vehDim","_towDim","_bb","_bbCenter","_towableObjectCorner","_vehCenterOfMass","_towableCenterOfmass"];
-_veh           = [_this, 0, objNull, [objNull]] call BL_fnc_param;
-_towableObject = [_this, 1, objNull, [objNull]] call BL_fnc_param;
-_behind        = [_this, 2, true, [true]] call BL_fnc_param;
+_veh           = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
+_towableObject = [_this, 1, objNull, [objNull]] call BIS_fnc_param;
+_behind        = [_this, 2, true, [true]] call BIS_fnc_param;
 
 detach _towableObject;
 
 _vehDim = _veh call LOG_fnc_objectDemensions;
 _towDim = _towableObject call LOG_fnc_objectDemensions;
 
-_bb = boundingBox _veh;
+_bb = boundingBoxReal _veh;
 _bbCenter = boundingCenter _veh;
 
 
@@ -31,8 +31,8 @@ if ( _behind ) then {
 	]];
 }
 else {
-	_vehCenterOfMass = _veh modelToWorld [0,0,0];
-	_towableCenterOfmass = _towableObject modelToWorld [0,0,0];
+	_vehCenterOfMass = getCenterOfMass _veh;
+	_towableCenterOfmass = getCenterOfMass _towableObject;
 	
 	_towableObject attachTo [_veh, [
 		0,

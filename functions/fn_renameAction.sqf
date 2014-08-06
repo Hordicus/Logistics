@@ -10,11 +10,12 @@
 
 private ['_code', '_text'];
 
-_code = [_this, 0, '', ['']] call BL_fnc_param;
-_text = [_this, 1, '', ['']] call BL_fnc_param;
+_code = [_this, 0, '', ['']] call BIS_fnc_param;
+_text = [_this, 1, '', ['']] call BIS_fnc_param;
 
 {
 	if ( _x select 0 == _code ) exitwith {
-		[_x select 1, _text] call LOG_fnc_setUserActionText;
+		player setUserActionText [_x select 1, _text];
 	};
-} count LOG_actionNameIds;
+	
+} count LOG_actionIds;

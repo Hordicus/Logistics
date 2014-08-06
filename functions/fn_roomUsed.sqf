@@ -11,7 +11,7 @@
 #include "macro.sqf"
 private ['_container', '_contents', '_count'];
 
-_container = [_this, 0, [], [[], objNull]] call BL_fnc_param;
+_container = [_this, 0, [], [[], objNull]] call BIS_fnc_param;
 _contents = [];
 _count = 0;
 

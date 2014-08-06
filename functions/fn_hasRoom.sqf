@@ -13,8 +13,8 @@
 #include "macro.sqf"
 private ['_container', '_object', '_roomUsed', '_containerSize', '_objectSize'];
 
-_container = [_this, 0, objNull, [objNull]] call BL_fnc_param;
-_object    = [_this, 1, "", [objNull, ""]] call BL_fnc_param;
+_container = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
+_object    = [_this, 1, "", [objNull, ""]] call BIS_fnc_param;
 
 if ( typeName _object == "OBJECT" ) then {
 	_object = typeof _object;
