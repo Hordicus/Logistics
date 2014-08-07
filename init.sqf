@@ -45,6 +45,21 @@ player addEventHandler ['killed', {
 		[] call LOG_fnc_releaseObject;
 	};
 }];
+
+LOG_objASLAdjust = 0;
+["snapASL", "onEachFrame", {
+	if ( !isNull LOG_currentObject ) then {
+		_asl = (getPosASL player) select 2;
+		_adjust = abs((round _asl) - _asl);
+		
+		if ( _adjust != LOG_objASLAdjust ) then {
+			LOG_objASLAdjust = _adjust;
+			[] call LOG_fnc_positionHeldObject;
+		};
+	};
+}] call BIS_fnc_addStackedEventHandler;
+
+
 _setVars = [];
 while {true} do {
 	_cursorTarget = cursorTarget;

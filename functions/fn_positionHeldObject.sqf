@@ -33,9 +33,6 @@ LOG_pos_offsetHeight       = _offsetHeight;
 LOG_pos_centerFromPlayer   = _centerFromPlayer;
 LOG_pos_direction          = _direction;
 
-// Detach object so we can reattach with new positioning
-detach LOG_currentObject;
-
 _bb = boundingBoxReal LOG_currentObject;
 _bbCenter = boundingCenter LOG_currentObject;
 
@@ -45,7 +42,7 @@ _objDim   = LOG_currentObject call LOG_fnc_objectDemensions;
 LOG_currentObject attachTo [player, [
 	_centerFromPlayer,
 	(_distanceFromPlayer + ((_objDim select 0) max (_objDim select 1))/2),
-	_offsetHeight + (_bbCenter select 2)
+	_offsetHeight + (_bbCenter select 2) + LOG_objASLAdjust
 ]];
 
 LOG_currentObject setVectorDirAndUp [[1, _direction] call LOG_fnc_polar2vect, vectorUp LOG_currentObject];
